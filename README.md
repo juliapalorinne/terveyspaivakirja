@@ -1,4 +1,4 @@
-# Tietokantasovellus
+# Terveyspäiväkirja
 
 ## Sovelluksen tarkoitus
 
