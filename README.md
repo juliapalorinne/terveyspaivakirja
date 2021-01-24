@@ -4,14 +4,18 @@
 
 Sovelluksen tarkoituksena on tallentaa terveyteen liittyviä tietoja, kuten urheiluun, ruokailuun ja uneen liittyviä tietoja. Sovelluksella voi myös tehdä treeniohjelmia ja tallentaa reseptejä ruokasuunnittelua varten.
 <br><br/>
+Tärkeimmät ominaisuudet käyttäjän kannalta:
+- Käyttäjä voi tallentaa tietoa treeneistä, unesta ja ruokavaliosta
+- Käyttäjä voi hakea treenejä tai ruokia avainsanoilla
+- Käyttäjä voi tallentaa treeniohjelmia ja reseptejä
+- Käyttäjä voi tarkastella toisten käyttäjien julkiseksi asettamia tietoja
+<br><br/>
 
-## Dokumentaatio
+## Arkkitehtuuri
 
-[Vaatimusmäärittely](https://github.com/juliapalorinne/tietokantasovellus/blob/master/dokumentaatio/vaatimusmaarittely.md)
-<br><br/>
-[Käyttöohje](https://github.com/juliapalorinne/tietokantasovellus/blob/master/dokumentaatio/kayttoohje.md)
-<br><br/>
-[Arkkitehtuuri](https://github.com/juliapalorinne/tietokantasovellus/blob/master/dokumentaatio/arkkitehtuuri.md)
-<br><br/>
-[Työaikakirjanpito](https://github.com/juliapalorinne/tietokantasovellus/blob/master/dokumentaatio/tyoaikakirjanpito.md)
+
+
+## Työaikakirjanpito
+
+[Työaikakirjanpito](https://github.com/juliapalorinne/terveyspaivakirja/tyoaikakirjanpito.md)
 <br><br/>
