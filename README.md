@@ -7,11 +7,11 @@ Sovelluksen tarkoituksena on tallentaa terveyteen liittyviä tietoja, kuten urhe
 
 ## Dokumentaatio
 
-[Vaatimusmäärittely](https://github.com/juliapalorinne/tietokantasovellus/blob/master/documentation/vaatimusmaarittely.md)
+[Vaatimusmäärittely](https://github.com/juliapalorinne/tietokantasovellus/blob/master/dokumentaatio/vaatimusmaarittely.md)
 <br><br/>
-[Käyttöohje](https://github.com/juliapalorinne/tietokantasovellus/blob/master/documentation/kayttoohje.md)
+[Käyttöohje](https://github.com/juliapalorinne/tietokantasovellus/blob/master/dokumentaatio/kayttoohje.md)
 <br><br/>
-[Arkkitehtuuri](https://github.com/juliapalorinne/tietokantasovellus/blob/master/documentation/arkkitehtuuri.md)
+[Arkkitehtuuri](https://github.com/juliapalorinne/tietokantasovellus/blob/master/dokumentaatio/arkkitehtuuri.md)
 <br><br/>
-[Työaikakirjanpito](https://github.com/juliapalorinne/tietokantasovellus/blob/master/documentation/tyoaikakirjanpito.md)
+[Työaikakirjanpito](https://github.com/juliapalorinne/tietokantasovellus/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 <br><br/>
