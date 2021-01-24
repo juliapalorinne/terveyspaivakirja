@@ -2,7 +2,6 @@
 
 Sovellus on tarkoitettu terveystietojen, kuten treeni-, uni- ja ruokavaliotietojen tallentamiseen.
 
-<br></br>
 
 Tärkeimmät ominaisuudet käyttäjän kannalta:
 - Käyttäjä voi tallentaa tietoa treeneistä, unesta ja ruokavaliosta
