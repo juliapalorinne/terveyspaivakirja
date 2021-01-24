@@ -2,7 +2,8 @@
 
 ## Sovelluksen tarkoitus
 
-Sovelluksen tarkoitus on 
+Sovelluksen tarkoituksena on tallentaa terveyteen liittyviä tietoja, kuten urheiluun, ruokailuun ja uneen liittyviä tietoja.
+<br><br/>
 
 ## Dokumentaatio
 
