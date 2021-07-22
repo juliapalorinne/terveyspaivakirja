@@ -36,5 +36,5 @@ Kolmikerroksinen rakenne:
 
 ## Työaikakirjanpito
 
-[Työaikakirjanpito](https://github.com/juliapalorinne/terveyspaivakirja/tyoaikakirjanpito.md)
+[Työaikakirjanpito](https://github.com/juliapalorinne/terveyspaivakirja/blob/master/tyoaikakirjanpito.md)
 <br><br/>
