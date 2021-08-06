@@ -1,4 +1,22 @@
 <title>Terveyspäiväkirja</title>
+
 <h1>Terveyspäiväkirja</h1>
-<p>Tervetuloa terveyspäiväkirjaan! Tällä sovelluksella voit seurata terveyttäsi ja pitää ruoka-, treeni- ja unipäiväkirjaa.
-Voit myös tehdä ruokasuunnitelmia ja tallentaa reseptejä ja treeniohjelmia.</p>
+<p>Tervetuloa terveyspäiväkirjaan! Tällä sovelluksella voit seurata terveyttäsi ja 
+    pitää ruoka-, treeni- ja unipäiväkirjaa.
+    Voit myös tehdä ruokasuunnitelmia ja tallentaa reseptejä ja treeniohjelmia.</p>
+
+{% if session.username %}
+    <p>Olet kirjautunut nimellä {{ session.username }}</p>
+    <a href="/logout">Kirjaudu ulos</a>
+{% else %}
+    <form action="/login" method="POST">
+        <p>Tunnus:<br>
+            <input type="text" name="username"></p>
+        <p>Salasana:<br>
+            <input type="password" name="password"></p>
+        <input type="submit" value="Kirjaudu">
+    </form>
+
+    <a href="/new_user">Rekisteröi uusi käyttäjä</a>
+{% endif %}
+

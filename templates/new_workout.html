@@ -1,0 +1,37 @@
+<title>Uusi harjoitus</title>
+
+<h1>Uusi harjoitus</h1>
+
+<p>Voit luoda uuden harjoituksen joko lisäämällä kerralla 
+    luomasi treeniohjelman tai tallentamalla jokaisen liikkeen 
+    yksitellen. Voit muokata toistojen ja sarjojen määrää sekä 
+    vastusta harjoituksen luomisen jälkeen.
+</p>
+
+<form action="/{{ user[0] }}/workouts/new" method="POST">
+    <input type="workout" name="workout"></p>
+        <p>Nimi: <input type="text" name="name"></p>
+        <p>Arvosana: <input type="integer" name="rating"></p>
+        <p>Kommentteja: <input type="text" name="comments"></p>
+    <input type="submit" value="Tallenna">
+</form>
+
+<p>Lisää treeniohjelma:</p>
+<form action="/{{ user[0] }}/workouts/new/log_routine" method="POST">
+    {% for move in moves %}
+        <input type="workout_move" name="move">
+            <p>Sarjat: <input type="integer" name="sets"></p>
+            <p>Toistot: <input type="integer" name="reps"></p>
+            <p>Vastus: <input type="float" name="load"></p>
+    {% endfor %}
+    <input type="submit" value="Lisää liikkeet">
+</form>
+
+<p>Lisää liikkeitä:</p>
+<form action="/{{ user[0] }}/workouts/new/log_moves" method="POST"></form>
+    <input type="move" name="move">
+        <p>Sarjat: <input type="integer" name="sets"></p>
+        <p>Toistot: <input type="integer" name="reps"></p>
+        <p>Vastus: <input type="float" name="load"></p>
+    <input type="submit" value="Lisää liike">
+</form>
