@@ -1,7 +1,8 @@
 # Työaikakirjanpito
 
+Aloitin projektin tammikuussa kevään kurssille, mutta jouduin jättämään kurssin kesken sairausloman vuoksi. Jatkan projektia nyt siitä, mihin silloin jäin.
 
 Päivämäärä | Tehtävä | Käytetty aika
 ---------- | ------- | -------------
-19.1.2021 | Projektin luominen ja dokumentaation aloittaminen | 1 h
-24.1.2021 | Dokumentaation tarkennus ja README | 0,5 h
+Tammikuu | Projektin luominen, dokumentaation aloittaminen, README ja web-sovelluksen aloitus | 4 h
+22.7.2021 | Dokumentaation päivitys | 0,5 h
