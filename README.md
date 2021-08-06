@@ -1,5 +1,10 @@
 # Terveyspäiväkirja
 
+Sovellus Herokussa:
+https://terveyspaivakirja.herokuapp.com/
+
+
+
 ## Sovelluksen tarkoitus
 
 Sovelluksen tarkoituksena on tallentaa terveyteen liittyviä tietoja, kuten urheiluun, ruokailuun ja uneen liittyviä tietoja. Sovelluksella voi myös tehdä treeniohjelmia ja tallentaa reseptejä ruokasuunnittelua varten.
