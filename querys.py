@@ -1,5 +1,19 @@
 from db import db
 
+
+def get_user(username):
+    sql = "SELECT password FROM users WHERE username=:username"
+    result = db.session.execute(sql, {"username":username})
+    user = result.fetchone()
+    return user
+
+
+def add_user(username, hash_value):
+    sql = "INSERT INTO users (username, password) VALUES (:username,:password)"
+    db.session.execute(sql, {"username":username, "password":hash_value})
+    db.session.commit()
+
+
 def get_all_workouts(user_id):
     sql = "SELECT id, name, time FROM workouts WHERE user ORDER BY id DESC"
     result = db.session.execute(sql)
