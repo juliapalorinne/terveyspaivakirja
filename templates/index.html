@@ -7,7 +7,13 @@
 
 {% if session.username %}
     <p>Olet kirjautunut nimellä {{ session.username }}</p>
+    
+    <a href="/{{ user[0] }}/workouts">Katsele vanhoja harjoituksia</a>
+    <a href="/{{ user[0] }}/workouts/new">Lisää uusi harjoitus</a>
+
     <a href="/logout">Kirjaudu ulos</a>
+
+
 {% else %}
     <form action="/login" method="POST">
         <p>Tunnus:<br>

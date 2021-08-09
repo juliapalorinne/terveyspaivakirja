@@ -6,23 +6,14 @@ from os import getenv
 # GET ALL WORKOUTS
 @app.route("/<int:user_id>/workouts")
 def workouts(user_id):
-    sql = "SELECT id, name, time FROM workouts WHERE user ORDER BY id DESC"
-    result = db.session.execute(sql)
-    list = result.fetchall()
+    list = get_all_workouts(user_id)
     return render_template(str(user_id) + "workouts.html", workouts = list, count=len(list))
 
 
 # GET ONE WORKOUT
 @app.route("/<int:user_id>/workouts/<int:workout_id>")
 def see_workout(user_id, workout_id):
-
-    sql = "SELECT topic FROM polls WHERE id=:workout_id AND user_id=:user_id"
-    result = db.session.execute(sql, {"user_id":user_id}, {"workout_id":workout_id})
-    topic = result.fetchone()[0]
-
-    sql = "SELECT id, choice FROM choices WHERE poll_id=:id"
-    result = db.session.execute(sql, {"id":id})
-    choices = result.fetchall()
+    workout = get_one_workout(user_id, workout_id)
     return render_template(str(user_id) + "workout.html", user_id = user_id, moves = moves)
 
 
@@ -30,13 +21,8 @@ def see_workout(user_id, workout_id):
 @app.route("/<int:user_id>/workouts/new", methods=["POST"])
 def new_workout(user_id):
     name = request.form["name"]
-    instructions = request.form["instructions"]
-
-    sql = "INSERT INTO workouts (name, instructions, time, user) " 
-    + "VALUES (:name, :instructions, NOW(), :user_id) RETURNING id"
-
-    result = db.session.execute(sql, {"name":name, "instructions":instructions})
-    workout_id = result.fetchone()[0]
+    instructions = request.form["instructions"]    
+    workout_id = add_workout(user_id, name, instructions)
     
     return redirect(str(user_id) + "/workouts" + str(workout_id)
 
