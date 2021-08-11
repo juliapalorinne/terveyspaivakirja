@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template
+from flask import redirect, render_template, request, session
 from os import getenv
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -66,6 +66,6 @@ def post_new_user():
 
 # GET USER PAGE
 @app.route("/<int:user_id>", methods=["GET"])
-def show_user(user_id())
+def show_user(user_id):
     user = get_user
     return render_template("user.html", user=user)
