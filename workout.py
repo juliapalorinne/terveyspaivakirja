@@ -1,6 +1,7 @@
 from app import app
-from flask import render_template
+from flask import redirect, render_template, request, session
 from os import getenv
+from querys import get_one_workout, get_all_workouts, add_workout
 
 
 # GET ALL WORKOUTS

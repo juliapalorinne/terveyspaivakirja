@@ -8,7 +8,7 @@
     vastusta harjoituksen luomisen jälkeen.
 </p>
 
-<form action="/{{ user[0] }}/workouts/new" method="POST">
+<form action="/user/{{ user[0] }}/workouts/new" method="POST">
     <input type="workout" name="workout"></p>
         <p>Nimi: <input type="text" name="name"></p>
         <p>Arvosana: <input type="integer" name="rating"></p>
@@ -17,7 +17,7 @@
 </form>
 
 <p>Lisää treeniohjelma:</p>
-<form action="/{{ user[0] }}/workouts/new/log_routine" method="POST">
+<form action="/user/{{ user[0] }}/workouts/new/log_routine" method="POST">
     {% for move in moves %}
         <input type="workout_move" name="move">
             <p>Sarjat: <input type="integer" name="sets"></p>
@@ -28,7 +28,7 @@
 </form>
 
 <p>Lisää liikkeitä:</p>
-<form action="/{{ user[0] }}/workouts/new/log_moves" method="POST"></form>
+<form action="/user/{{ user[0] }}/workouts/new/log_moves" method="POST">
     <input type="move" name="move">
         <p>Sarjat: <input type="integer" name="sets"></p>
         <p>Toistot: <input type="integer" name="reps"></p>

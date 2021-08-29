@@ -3,14 +3,14 @@
 <h1>Tallennetut harjoitukset</h1>
 <p>Luo uusi harjoitus painikkeesta "Uusi harjoitus".</p>
 
-<a href="/{{ user[0] }}/workouts/new">Uusi harjoitus</a>
+<a href="/user/{{ user[0] }}/workouts/new">Uusi harjoitus</a>
 
 <hr>
 {% for workout in workouts %}
     Nimi: {{ workout[1] }} <br>
     Luotu: {{ workout[2].strftime("%Y-%m-%d %H:%M:%S") }} <br>
-    <a href="/{{ user[0] }}/workouts/{{ workout[0] }}">Tarkastele harjoitusta</a>
+    <a href="/user/{{ user[0] }}/workouts/{{ workout[0] }}">Tarkastele harjoitusta</a>
 <hr>
 {% endfor %}
 
-<a href="/{{ user[0] }}/">Takaisin</a>
+<a href="/user/{{ user[0] }}/">Takaisin</a>

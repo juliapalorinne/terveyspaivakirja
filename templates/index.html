@@ -5,11 +5,9 @@
     pitää ruoka-, treeni- ja unipäiväkirjaa.
     Voit myös tehdä ruokasuunnitelmia ja tallentaa reseptejä ja treeniohjelmia.</p>
 
-{% if session.username %}
-    <p>Olet kirjautunut nimellä {{ session.username }}</p>
+{% if session.user_id %}
     
-    <a href="/{{ user[0] }}/workouts">Katsele vanhoja harjoituksia</a>
-    <a href="/{{ user[0] }}/workouts/new">Lisää uusi harjoitus</a>
+    <a href="/user/{{ user[0] }}">Tarkastele omaa sivua</a>
 
     <a href="/logout">Kirjaudu ulos</a>
 
@@ -24,5 +22,6 @@
     </form>
 
     <a href="/new_user">Rekisteröi uusi käyttäjä</a>
+
 {% endif %}
 

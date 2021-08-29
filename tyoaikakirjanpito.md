@@ -7,4 +7,6 @@ Tammikuu | Projektin luominen, dokumentaation aloittaminen, README ja web-sovell
 22.7.2021 | Dokumentaation päivitys | 0,5 h
 2.8.2021 | Python-kertaus, sovellusta ja html-tiedostoja | 6,5 h
 6.8.2021 | Sovellusta ja html-tiedostoja eteenpäin, sovellus Herokuun | 5,5 h
-**YHTEENSÄ** | | **16,5 h**
+11.8.2021 | Tietokantafiksausta ja rakenteen korjailua | 3 h
+18.8.2021 | Jatkoa edelliseen | 2 h
+**YHTEENSÄ** | | **21,5 h**
