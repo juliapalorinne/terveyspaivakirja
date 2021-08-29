@@ -4,6 +4,10 @@ Sovellus Herokussa:
 https://terveyspaivakirja.herokuapp.com/
 
 
+## Tämänhetkinen tilanne
+
+En saa PostgreSQL-tietokantoja toimimaan koneellani enkä ole onnistunut kohtuullisessa ajassa löytämään ratkaisua ongelmaan. Sovellukseni ei siis toimi käytännössä enkä ole pystynyt juurikaan edistämään tilannetta edelliseen palautukseen verrattuna.
+
 
 ## Sovelluksen tarkoitus
 
