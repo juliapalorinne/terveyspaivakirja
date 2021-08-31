@@ -1,0 +1,20 @@
+<title>Uusi treeniohjelma</title>
+
+<h1>Uusi treeniohjelma</h1>
+
+
+<p>Voit luoda uuden treeniohjelman valitsemalla liikkeet allaolevalta listalta.
+    Voit muokata toistojen ja sarjojen määrää sekä 
+    vastusta harjoituksen luomisen jälkeen.
+</p>
+
+<form action="/user/{{ user[0] }}/routines/new" method="POST">
+    <p>Nimi: <input type="text" name="name"></p>
+    <p>Kategoria: <input type="text" name="text"></p>
+    <p>Ohjeet: <input type="text" name="instructions"></p>
+    <input type="submit" value="Tallenna">
+</form>
+
+
+<a href="/user/{{ user[0] }}/routines">Takaisin listaukseen</a><br>
+<a href="/user/{{ user[0] }}">Takaisin omalle sivulle</a><br>

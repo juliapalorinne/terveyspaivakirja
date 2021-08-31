@@ -1,0 +1,22 @@
+<h1>Uusi harjoitus</h1>
+
+<p>Luo uusi harjoitus tallentamasi treeniohjelman pohjalta.
+</p>
+
+
+<form action="/user/{{ user[0] }}/workouts/log_routine" method="POST">
+    <p>Nimi: <input type="text" name="name"></p>
+    <p>Kategoria: <input type="text" name="text"></p>
+    <p>Lisätietoja: <input type="text" name="comments"></p>
+    <input type="submit" value="Tallenna">
+</form>
+
+<hr>
+{% for routine in routines %}
+    Nimi: {{ routine[1] }} <br>
+    Kategoria: {{ routine[2] }} <br>
+    <a href="/user/{{ user[0] }}/routines/{{ routine[0] }}">Tarkastele treeniohjelmaa</a>
+<hr>
+{% endfor %}
+
+<a href="/user/{{ user[0] }}/workouts/new/">Takaisin</a>

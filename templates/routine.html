@@ -1,0 +1,28 @@
+<title>Treeniohjelma</title>
+
+<h1>Tarkastele treeniohjelmaa</h1>
+
+<p>Nimi: {{ routine.name }}</p>
+<p>Kategoria: {{ routine.category }}</p>
+<p>Ohjeet: {{ routine.instructions }}</p>
+
+<p>Liikkeet:</p>
+<ul>
+    {% for move in moves %}
+        <li> {{ routine_moves[1] }}: {{ routine_moves[2] }} kpl
+    {% endfor %}
+</ul>
+<hr>
+
+<p>Lisää liikkeitä:</p>
+<form action="/user/{{ user[0] }}/routines/{{ routine[0] }}/add_moves" method="POST">
+    {% for move in all_moves %}
+        <p>Nimi: {{ move.name }}</p>
+        <p>Sarjat: <input type="integer" name="sets"></p>
+        <p>Toistot: <input type="integer" name="reps"></p>
+        <p>Vastus: <input type="float" name="load"></p>
+    {% endfor %}
+    <input type="submit" value="Lisää liikkeet">
+</form>
+
+<a href="/user/{{ user[0] }}/routines">Takaisin</a>

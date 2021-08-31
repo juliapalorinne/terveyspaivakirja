@@ -1,0 +1,16 @@
+<title>Terveyspäiväkirja</title>
+
+<h1>Tallennetut treeniohjelmat</h1>
+<p>Luo uusi treeniohjelma painikkeesta "Uusi treeniohjelma".</p>
+
+<a href="/user/{{ user[0] }}/routines/new">Uusi treeniohjelma</a>
+
+<hr>
+{% for routine in routines %}
+    Nimi: {{ routine.name }} <br>
+    Kategoria: {{ routine.category }} <br>
+    <a href="/user/{{ user[0] }}/routines/{{ routine[0] }}">Tarkastele treeniohjelmaa</a>
+<hr>
+{% endfor %}
+
+<a href="/user/{{ user[0] }}">Takaisin käyttäjäsivulle</a>

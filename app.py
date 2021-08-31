@@ -6,3 +6,4 @@ app.secret_key = getenv("SECRET_KEY")
 
 import user
 import workout
+import routine

@@ -1,35 +1,49 @@
 from app import app
 from flask import redirect, render_template, request, session
 from os import getenv
-from querys import get_one_workout, get_all_workouts, add_workout
+from querys import *
+from user import user_id
 
 
 # GET ALL WORKOUTS
-@app.route("/<int:user_id>/workouts")
+@app.route("/user/<int:user_id>/workouts")
 def workouts(user_id):
     list = get_all_workouts(user_id)
-    return render_template(str(user_id) + "workouts.html", workouts = list, count=len(list))
+    length = count=len(list)
+    user = get_user_by_id(user_id)
+    return render_template("workouts.html", workouts = list, user = user)
 
 
 # GET ONE WORKOUT
-@app.route("/<int:user_id>/workouts/<int:workout_id>")
+@app.route("/user/<int:user_id>/workouts/<int:workout_id>")
 def see_workout(user_id, workout_id):
     workout = get_one_workout(user_id, workout_id)
-    return render_template(str(user_id) + "workout.html", user_id = user_id, moves = moves)
+    user = get_user_by_id(user_id)
+    moves = get_all_moves_by_workout(user_id, routine_id)
+    all_moves = get_all_moves()
+    return render_template("workout.html", user = user, workout = workout, moves = moves, all_moves = all_moves)
+
+
+# GET NEW WORKOUT PAGE
+@app.route("/user/<int:user_id>/workouts/new", methods=["GET"])
+def see_new_workout_page(user_id):
+    user = get_user_by_id(user_id)
+    return render_template("new_workout.html", user = user)
 
 
 # POST NEW WORKOUT
-@app.route("/<int:user_id>/workouts/new", methods=["POST"])
+@app.route("/user/<int:user_id>/workouts/new", methods=["POST"])
 def new_workout(user_id):
     name = request.form["name"]
-    instructions = request.form["instructions"]    
-    workout_id = add_workout(user_id, name, instructions)
+    category = request.form["category"]
+    comments = request.form["comments"]
+    workout_id = add_workout(user_id, name, category, comments)
     
-    return redirect(str(user_id) + "/workouts" + str(workout_id)
+    return redirect(see_workout(user_id, workout_id))
 
 
 # POST ROUTINE TO NEW WORKOUT
-@app.route("/<int:user_id>/workouts/<int:workout_id>/log_routine/<int:routine_id>", methods=["POST"]))
+@app.route("/user/<int:user_id>/workouts/<int:workout_id>/log_routine/<int:routine_id>", methods=["POST"])
 def log_routine(user_id, workout_id, routine_id):
 
     sql = "SELECT routine FROM routines WHERE id=:routine_id AND user_id=:user_id"
@@ -48,11 +62,11 @@ def log_routine(user_id, workout_id, routine_id):
             db.session.execute(sql, {"workout_id":workout_id, "move":move})
     db.session.commit()
 
-    return redirect(str(user_id) + "/workouts/" + str(workout_id))
+    return redirect(see_workout(user_id, workout_id))
     
 
 # POST MOVES TO WORKOUT
-@app.route("/<int:user_id>/workouts/<int:workout_id>/log_moves", methods=["POST"])
+@app.route("/user/<int:user_id>/workouts/<int:workout_id>/log_moves", methods=["POST"])
 def log_moves(user_id, workout_id):
 
     sql = "SELECT name FROM moves WHERE id=:routine_id AND user_id=:user_id"
@@ -69,6 +83,5 @@ def log_moves(user_id, workout_id):
             db.session.execute(sql, {"workout_id":workout_id, "move":move})
     db.session.commit()
 
-
-    return redirect(str(user_id) + "/workouts" + str(workout_id))
+    return redirect(see_workout(user_id, workout_id))
 
