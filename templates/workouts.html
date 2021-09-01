@@ -7,16 +7,20 @@
     <div class="container">
         <p>Luo uusi harjoitus painikkeesta "Uusi harjoitus".</p>
 
-        <a href="/user/{{ user[0] }}/workouts/new">Uusi harjoitus</a>
+        <form action="/user/{{ user[0] }}/workouts/new">
+            <input class="linkbutton",  type="submit" value="Uusi harjoitus">
+        </form>
     </div>
     
 
     <div class="container">
         <hr>
         {% for workout in workouts %}
-            Nimi: {{ workout[1] }} <br>
-            Luotu: {{ workout[2].strftime("%Y-%m-%d %H:%M:%S") }} <br>
-            <a href="/user/{{ user[0] }}/workouts/{{ workout[0] }}">Tarkastele harjoitusta</a>
+            <p>Nimi: {{ workout.name }}</p>
+            <p>Luotu: {{ workout.date.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+            <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}">
+                <input class="linkbutton",  type="submit" value="Tarkastele harjoitusta">
+            </form>
         <hr>
         {% endfor %}
     </div>
@@ -24,5 +28,4 @@
 {% endblock %}
 
 {% block footer %}
-    <a href="/user/{{ user[0] }}">Takaisin käyttäjäsivulle</a>
 {% endblock %}

@@ -24,6 +24,11 @@ def change_username(id, username):
     db.session.execute(sql, {"username":username, "id":id})
     db.session.commit()
 
+def change_password(id, hash_value):
+    sql = "UPDATE users SET password=:password WHERE id=:id"
+    db.session.execute(sql, {"password":hash_value, "id":id})
+    db.session.commit()
+
 def change_name(id, name):
     sql = "UPDATE users SET name=:name WHERE id=:id"
     db.session.execute(sql, {"name":name, "id":id})
@@ -50,6 +55,13 @@ def change_user_info(id, username, name, birth_date, height, weight):
     db.session.execute(sql, {"username":username, "name":name, "birth_date":birth_date, "height":height, "weight":weight, "id":id})
     db.session.commit()
 
+
+def delete_user(id):
+    sql = "DELETE user FROM user WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+
+    
 
 
 

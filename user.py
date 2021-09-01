@@ -208,6 +208,54 @@ def update_user(id):
     return get_user_update(id)
 
 
+# CHANGE PASSWORD
+@app.route("/user/<int:id>/change_password", methods=["POST"])
+def update_password(id):
+    old_password = request.form["old_password"]
+    password = request.form["password"]
+    password_again = request.form["password_again"]
+    user = get_user_by_id(id)
+
+    hash_value = user.password
+    if check_password_hash(hash_value, old_password):
+        if password == password_again:
+            hash_value = generate_password_hash(password)
+            change_password(id, hash_value)
+            remove_error_message()
+            return show_user(id)
+        else:
+            session["error"] = "Salasanat eivät täsmää"
+            session["error_shown"] = 1
+    else:
+        session["error"] = "Vanha salasana on virheellinen"
+        session["error_shown"] = 1
+    return get_user_update(id)
+
+
+# CHANGE PASSWORD
+@app.route("/user/<int:id>/delete", methods=["POST"])
+def delete_user(id):
+    password = request.form["password"]
+    user = get_user_by_id(id)
+    hash_value = user.password
+    if check_password_hash(hash_value, password):
+        workout_list = get_all_workouts(id)
+        for workout in workout_list:
+            delete_workout(id, workout.id)
+
+        routine_list = get_all_routines(id)
+        for routine in routine_list:
+            delete_routine(id, routine.id)
+        
+        delete_user(id)
+        return logout()
+    else:
+        session["error"] = "Salasana on virheellinen"
+        session["error_shown"] = 1
+    return get_user_update(id)
+    
+    
+
 # LOG OUT
 @app.route("/logout", methods=["GET"])
 def logout():

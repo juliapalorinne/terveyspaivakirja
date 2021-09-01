@@ -4,9 +4,10 @@
 
     <h1>Muuta käyttäjätietoja</h1>
     
-    
-    <form action="/user/{{ user[0] }}/update" method="POST">
-        <div class="container">
+    <div class="container">
+        <form action="/user/{{ user[0] }}/update" method="POST">
+            
+            <h2>Muuta tietoja</h2>
             <p>Käyttäjätunnus: {{ user.username }}</p>
             <p>Muuta käyttäjätunnusta:<input type="text" name="name"></p>
             <br>
@@ -26,16 +27,30 @@
             <p>Paino: {{ user.weight }}</p>
             <p>Paino<input type="integer" name="weight"></p>        
             <br>
-        </div>
-
-        <div class="container">
-            <p>Muuta salasanaa</p>
+            <input class="submitbutton", type="submit" value="Muuta tietoja">
+        </form>
+    </div>
+     
+    <div class="container">
+        <form action="/user/{{ user[0] }}/change_password" method="POST">
+            <h2>Muuta salasanaa</h2>
+            <p>Vanha salasana:<input type="password" name="old_password"></p>
             <p>Salasana:<input type="password" name="password"></p>
             <p>Salasana uudestaan:<input type="password" name="password_again"></p>
-        </div>
-        
-        <input class="submitbutton", type="submit" value="Muuta tietoja">
-    </form>
+            <br>
+            <input class="submitbutton", type="submit" value="Muuta tietoja">
+        </form>
+    </div>
+
+
+    <div class="container">
+        <form action="/user/{{ user[0] }}/delete" method="POST">
+            <h2>Poista käyttäjä</h2>
+            <p>Anna salasana:<input type="password" name="password"></p>
+            <br>
+            <input class="submitbutton", type="submit" value="Poista käyttäjä">
+        </form>
+    </div>
 
 {% endblock %}
 
