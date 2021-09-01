@@ -1,16 +1,28 @@
-<title>Terveyspäiväkirja</title>
+{% extends "layout.html" %}
+{% block title %} Omat treeniohjelmat {% endblock %}
+{% block content %}
 
-<h1>Tallennetut treeniohjelmat</h1>
-<p>Luo uusi treeniohjelma painikkeesta "Uusi treeniohjelma".</p>
+    <h1>Tallennetut treeniohjelmat</h1>
+    
+    <div class="container">
+        <p>Luo uusi treeniohjelma painikkeesta "Uusi treeniohjelma".</p>
 
-<a href="/user/{{ user[0] }}/routines/new">Uusi treeniohjelma</a>
+        <a href="/user/{{ user[0] }}/routines/new">Uusi treeniohjelma</a>
+    </div>
 
-<hr>
-{% for routine in routines %}
-    Nimi: {{ routine.name }} <br>
-    Kategoria: {{ routine.category }} <br>
-    <a href="/user/{{ user[0] }}/routines/{{ routine[0] }}">Tarkastele treeniohjelmaa</a>
-<hr>
-{% endfor %}
+    
+    <div class="container">
+        <hr>
+        {% for routine in routines %}
+            Nimi: {{ routine.name }} <br>
+            Kategoria: {{ routine.category }} <br>
+            <a href="/user/{{ user[0] }}/routines/{{ routine[0] }}">Tarkastele treeniohjelmaa</a>
+        <hr>
+        {% endfor %}
+    </div>
 
-<a href="/user/{{ user[0] }}">Takaisin käyttäjäsivulle</a>
+{% endblock %}
+
+{% block footer %}
+    <a href="/user/{{ user[0] }}">Takaisin käyttäjäsivulle</a>
+{% endblock %}

@@ -11,7 +11,7 @@ def workouts(user_id):
     list = get_all_workouts(user_id)
     length = count=len(list)
     user = get_user_by_id(user_id)
-    return render_template("workouts.html", workouts = list, user = user)
+    return render_template("workouts.html", workouts=list, user=user)
 
 
 # GET ONE WORKOUT
@@ -19,9 +19,9 @@ def workouts(user_id):
 def see_workout(user_id, workout_id):
     workout = get_one_workout(user_id, workout_id)
     user = get_user_by_id(user_id)
-    moves = get_all_moves_by_workout(user_id, routine_id)
+    moves = get_all_moves_by_workout(user_id, workout_id)
     all_moves = get_all_moves()
-    return render_template("workout.html", user = user, workout = workout, moves = moves, all_moves = all_moves)
+    return render_template("workout.html", user=user, workout=workout, moves=moves, all_moves=all_moves)
 
 
 # GET NEW WORKOUT PAGE

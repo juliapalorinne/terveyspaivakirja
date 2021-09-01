@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="/static/css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+<title>{% block title %}{% endblock %}</title>
+
+<div class="margin", id="uppermargin"></div>
+<div id="links">
+    {% if session.user_id%}
+        <form action="/">
+            <input class="linkbutton", id="frontpagebutton" type="submit" value="Etusivulle">
+        </form>
+        <form action="/user/{{ user[0] }}">
+            <input class="linkbutton", id="userpagebutton" type="submit" value="Käyttäjäsivulle">
+        </form>
+        <form action="/logout">
+            <input class="linkbutton", id="logoutbutton" type="submit" value="Kirjaudu ulos">
+        </form>
+        
+    {% else %}
+        <form action="/">
+            <input class="linkbutton", id="frontpagebutton" type="submit" value="Etusivulle">
+        </form>
+        <form action="/new_user">
+            <input class="linkbutton", id="newuserbutton" type="submit" value="Luo uusi käyttäjä">
+        </form>
+    {% endif %}
+</div>
+
+<body>
+    
+    <hr>
+        {% block content %}{% endblock %}
+    <hr>
+
+    <footer>
+        {% if session.error %}
+            <p id=errormessage>{{ session.error }}</p>
+        {% endif %}
+        
+        {% block footer %}{% endblock %}
+    </footer>
+
+</body>
+
+<div class="margin", id="lowermargin"></div>

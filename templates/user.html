@@ -1,54 +1,84 @@
-<title>Oma sivu</title>
+{% extends "layout.html" %}
+{% block title %} Oma sivu {% endblock %}
+{% block content %}
 
-<h1>Oma sivu</h1>
+    <h1>Oma sivu</h1>
 
-{% if user.name != None %}
-    <p>Nimi: {{ user.name }}</p>
-{% else %}
-    <form action="/user/{{ user[0] }}/change_name" method="POST">
-        <p>Nimi:<input type="text" name="name">
-            <input type="submit" value="Lisää nimi"></p>
-    </form>
-{% endif %}
+    <p>Olet kirjautunut käyttäjänimellä {{ user.username }}.</p>
 
-{% if user.birth_date != None %}
-    <p>Syntymäaika: {{ user.birth_date }}</p>
-{% else %}
-    <form action="/user/{{ user[0] }}/change_birth_date" method="POST">
-        <p>Syntymäaika<input type="date" name="birth_date">
-            <input type="submit" value="Lisää syntymäaika"></p>
+    <div class="container">
+        <h2>Omat tiedot</h2>
+
+        {% if user.name != None %}
+            <p>Nimi: {{ user.name }}</p>
+        {% else %}
+            <form action="/user/{{ user[0] }}/change_name" method="POST">
+                <p>Nimi:<input type="text" name="name">
+                    <input class="submitbutton", type="submit" value="Lisää nimi"></p>
+            </form>
+        {% endif %}
+
+        {% if user.birth_date != None %}
+            <p>Syntymäaika: {{ user.birth_date }}</p>
+        {% else %}
+            <form action="/user/{{ user[0] }}/change_birth_date" method="POST">
+                <p>Syntymäaika<input type="date" name="birth_date">
+                    <input class="submitbutton", type="submit" value="Lisää syntymäaika"></p>
+                
+            </form>
+        {% endif %}
+
+        {% if user.height != None %}
+            <p>Pituus: {{ user.height }}</p>
+        {% else %}
+            <form action="/user/{{ user[0] }}/change_height" method="POST">
+                <p>Pituus<input type="integer" name="height">
+                    <input class="submitbutton", type="submit" value="Lisää pituus"></p>
+            </form>
+        {% endif %}
+
+        {% if user.weight != None %}
+            <p>Paino: {{ user.weight }}</p>
+        {% else %}
+            <form action="/user/{{ user[0] }}/change_weight" method="POST">
+                <p>Paino<input type="integer" name="weight">
+                    <input class="submitbutton", type="submit" value="Lisää paino"></p>        
+            </form>
+        {% endif %}
+
+        <br>
+        <form action="/user/{{ user[0] }}/update">
+            <input class="linkbutton", type="submit" value="Muuta tietoja">
+        </form>
         
-    </form>
-{% endif %}
+    </div>
 
-{% if user.height != None %}
-    <p>Pituus: {{ user.height }}</p>
-{% else %}
-    <form action="/user/{{ user[0] }}/change_height" method="POST">
-        <p>Pituus<input type="integer" name="height">
-            <input type="submit" value="Lisää pituus"></p>
-    </form>
-{% endif %}
+    <div class="container">
+        <h2>Harjoitukset</h2>
 
-{% if user.weight != None %}
-    <p>Paino: {{ user.weight }}</p>
-{% else %}
-    <form action="/user/{{ user[0] }}/change_weight" method="POST">
-        <p>Paino<input type="integer" name="weight">
-            <input type="submit" value="Lisää paino"></p>        
-    </form>
-{% endif %}
+        <form action="/user/{{ user[0] }}/workouts">
+            <input class="linkbutton",  type="submit" value="Omat harjoitukset">
+        </form>
+        <br>
+        <form action="/user/{{ user[0] }}/workouts/new">
+            <input class="linkbutton",  type="submit" value="Lisää uusi harjoitus">
+        </form>
+    </div>
 
+    <div class="container">
+        <h2>Treeniohjelmat</h2>
 
-<a href="/user/{{ user[0] }}/update">Muuta tietoja</a><br>
+        <form action="/user/{{ user[0] }}/routines">
+            <input class="linkbutton", type="submit" value="Omat treeniohjelmat">
+        </form>
+        <br>
+        <form action="/user/{{ user[0] }}/routines/new">
+            <input class="linkbutton", type="submit" value="Lisää uusi treeniohjelma">
+        </form>
+    </div>
 
+{% endblock %}
 
-
-<a href="/user/{{ user[0] }}/workouts">Omat harjoitukset</a><br>
-<a href="/user/{{ user[0] }}/workouts/new">Lisää uusi harjoitus</a> <br>
-<br>
-<a href="/user/{{ user[0] }}/routines">Omat treeniohjelmat</a> <br>
-<a href="/user/{{ user[0] }}/routines/new">Lisää uusi harjoitus</a> <br>
-
-
-<a href="/logout">Kirjaudu ulos</a>
+{% block footer %}
+    {{ error }}
+{% endblock %}

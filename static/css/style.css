@@ -1,0 +1,91 @@
+body {
+    margin: auto;
+    padding: 10px;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    background:rgb(70, 79, 88);
+    color: rgb(207, 158, 101);
+}
+
+#links {
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    background: rgb(48, 54, 59);
+}
+
+.container {
+    background: rgb(48, 54, 59);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.submitbutton {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    background: rgb(207, 158, 101);
+    color: black;
+    border-radius: 10px;
+}
+
+
+footer {
+    margin: 0px;
+    padding: 20px;
+    background: rgb(48, 54, 59);
+    text-align: left;
+}
+
+#errormessage {
+    font-size: 16px;
+    color: rgb(131, 5, 5);
+    background: rgb(224, 221, 13);
+}
+
+.margin {
+    height: 30px;
+    color: white;
+}
+
+#uppermargin {
+    background: linear-gradient(to right, rgb(92, 12, 145), black);
+}
+
+#lowermargin {
+    background: linear-gradient(to right, black, rgb(92, 12, 145));
+}
+
+.linkbutton {
+    padding: 10px;
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    background: rgb(207, 158, 101);
+    color: black;
+    
+}
+
+#frontpagebutton {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#newuserbutton {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 220px;
+}
+
+#userpagebutton {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 220px;
+}
+
+#logoutbutton {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 430px;
+}

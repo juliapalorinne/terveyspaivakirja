@@ -1,15 +1,23 @@
-<title>Luo uusi käyttäjä</title>
+{% extends "layout.html" %}
+{% block title %} Luo uusi käyttäjä {% endblock %}
+{% block content %}
 
-<h1>Luo uusi käyttäjä</h1>
+    <h1>Luo uusi käyttäjä</h1>
+    
+    <div class="container">
+        <form action="/new_user" method="POST" onsubmit="return check(this)">
+            <p>Käyttäjätunnus:<br>
+                <input type="text" name="username"></p>
+            <p>Salasana:<br>
+                <input type="password" name="password"></p>
+            <p>Salasana uudestaan:<br>
+                <input type="password" name="password_again"></p>
+            <input class="submitbutton", type="submit" value="Luo käyttäjä">
+        </form>
+    </div>
+        
 
-<form action="/new_user" method="POST">
-    <p>Käyttäjätunnus:<br>
-        <input type="text" name="username"></p>
-    <p>Salasana:<br>
-        <input type="password" name="password"></p>
-    <p>Salasana uudestaan:<br>
-        <input type="password" name="password_again"></p>
-    <input type="submit" value="Luo käyttäjä">
-</form>
+{% endblock %}
 
-<a href="/">Palaa etusivulle</a>
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %} Muuta käyttäjätietoja {% endblock %}
+{% block content %}
+
+    <h1>Muuta käyttäjätietoja</h1>
+    
+    
+    <form action="/user/{{ user[0] }}/update" method="POST">
+        <div class="container">
+            <p>Käyttäjätunnus: {{ user.username }}</p>
+            <p>Muuta käyttäjätunnusta:<input type="text" name="name"></p>
+            <br>
+            
+            <p>Nimi: {{ user.name }}</p>
+            <p>Muuta nimeä:<input type="text" name="name"></p>
+            <br>
+            
+            <p>Syntymäaika: {{ user.birth_date }}</p>
+            <p>Muuta syntymäaikaa:<input type="date" name="birth_date"></p>
+            <br>
+            
+            <p>Pituus: {{ user.height }}</p>
+            <p>Muuta pituutta:<input type="integer" name="height"></p>
+            <br>
+            
+            <p>Paino: {{ user.weight }}</p>
+            <p>Paino<input type="integer" name="weight"></p>        
+            <br>
+        </div>
+
+        <div class="container">
+            <p>Muuta salasanaa</p>
+            <p>Salasana:<input type="password" name="password"></p>
+            <p>Salasana uudestaan:<input type="password" name="password_again"></p>
+        </div>
+        
+        <input class="submitbutton", type="submit" value="Muuta tietoja">
+    </form>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

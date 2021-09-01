@@ -1,20 +1,37 @@
-<title>Uusi harjoitus</title>
+{% extends "layout.html" %}
+{% block title %} Uusi harjoitus {% endblock %}
+{% block content %}
 
-<h1>Uusi harjoitus</h1>
+    <h1>Uusi harjoitus</h1>
 
-<p>Voit luoda uuden harjoituksen joko lisäämällä kerralla 
-    luomasi treeniohjelman tai tallentamalla jokaisen liikkeen 
-    yksitellen. Voit muokata toistojen ja sarjojen määrää sekä 
-    vastusta harjoituksen luomisen jälkeen.
-</p>
+    <div class="container">
+        <p>Voit luoda uuden harjoituksen joko lisäämällä kerralla 
+            luomasi treeniohjelman tai tallentamalla jokaisen liikkeen 
+            yksitellen. Voit muokata toistojen ja sarjojen määrää sekä 
+            vastusta harjoituksen luomisen jälkeen.
+        </p>
 
-<form action="/user/{{ user[0] }}/workouts/new" method="POST">
-    <p>Nimi: <input type="text" name="name"></p>
-    <p>Kategoria: <input type="text" name="text"></p>
-    <p>Kommentteja: <input type="text" name="comments"></p>
-    <input type="submit" value="Tallenna">
-</form>
+        <form action="/user/{{ user[0] }}/workouts/new" method="POST">
+            <p>Nimi: <input type="text" name="name"></p>
+            <p>Kategoria: <input type="text" name="text"></p>
+            <p>Kommentteja: <input type="text" name="comments"></p>
+            <input class="submitbutton", type="submit" value="Tallenna">
+        </form>
+    </div>
 
+    <div class="container">
+        <p>Lisää treeniohjelman pohjalta:</p>
+        <form action="/user/{{ user[0] }}/workouts/new/log_routine">
+            <input class="linkbutton",  type="submit" value="Valitse treeniohjelma">
+        </form>
+        
+    </div>
+    
+    <form action="/user/{{ user[0] }}/workouts">
+        <input class="linkbutton",  type="submit" value="Takaisin listaukseen">
+    </form>
 
-<p>Lisää treeniohjelman pohjalta:</p>
-<a href="/user/{{ user[0] }}/workouts/new/log_routine">Valitse treeniohjelma</a>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

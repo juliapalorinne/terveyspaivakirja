@@ -19,6 +19,11 @@ def add_user(username, hash_value):
     db.session.execute(sql, {"username":username, "password":hash_value})
     db.session.commit()
 
+def change_username(id, username):
+    sql = "UPDATE users SET username=:username WHERE id=:id"
+    db.session.execute(sql, {"username":username, "id":id})
+    db.session.commit()
+
 def change_name(id, name):
     sql = "UPDATE users SET name=:name WHERE id=:id"
     db.session.execute(sql, {"name":name, "id":id})
@@ -70,6 +75,21 @@ def get_all_moves_by_workout(workout_id):
     result = db.session.execute(sql, {"workout_id":workout_id})
     list = result.fetchall()
     return list
+
+
+
+def get_workout_move(move_id, workout_id):
+    sql = "SELECT * FROM workout_moves WHERE move_id=:move_id AND workout_id=:workout_id"
+    result = db.session.execute(sql, {"move_id":move_id, "workout_id":workout_id})
+    workout_move = result.fetchone()
+    return workout_move
+
+
+def add_move_to_workout(sets, reps, load, move_id, workout_id):
+    sql = "INSERT INTO workout_moves (sets, reps, load, move_id, workout_id) VALUES (:sets, :reps, :load, :move_id, :workout_id)"
+    db.session.execute(sql, {"sets":sets, "reps":reps, "load":load, "move_id":move_id, "workout_id":workout_id})
+    db.session.commit()
+
 
 
 def add_workout(user_id, name, category, comments):
@@ -146,10 +166,10 @@ def get_all_routines(user_id):
     return list
 
 
-def get_one_routine(user_id, routine_id):
-    sql = "SELECT routine FROM routines WHERE id=:routine_id AND user_id=:user_id"
-    result = db.session.execute(sql, {"user_id":user_id}, {"routine_id":routine_id})
-    routine = result.fetchone()[0]
+def get_one_routine(user_id, id):
+    sql = "SELECT * FROM routines WHERE id=:id AND user_id=:user_id"
+    result = db.session.execute(sql, {"id":id, "user_id":user_id})
+    routine = result.fetchone()
     return routine
 
 
@@ -158,6 +178,19 @@ def get_all_moves_by_routine(routine_id):
     result = db.session.execute(sql, {"routine_id":routine_id})
     list = result.fetchall()
     return list
+
+
+def get_routine_move(move_id, routine_id):
+    sql = "SELECT * FROM routine_moves WHERE move_id=:move_id AND routine_id=:routine_id"
+    result = db.session.execute(sql, {"move_id":move_id, "routine_id":routine_id})
+    routine_move = result.fetchone()
+    return routine_move
+
+
+def move_to_routine(sets, reps, load, move_id, routine_id):
+    sql = "INSERT INTO routine_moves (sets, reps, load, move_id, routine_id) VALUES (:sets, :reps, :load, :move_id, :routine_id)"
+    db.session.execute(sql, {"sets":sets, "reps":reps, "load":load, "move_id":move_id, "routine_id":routine_id})
+    db.session.commit()
 
 
 def add_routine(name, category, instructions, user_id):

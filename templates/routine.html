@@ -1,28 +1,40 @@
-<title>Treeniohjelma</title>
+{% extends "layout.html" %}
+{% block title %} Treeniohjelma {% endblock %}
+{% block content %}
 
-<h1>Tarkastele treeniohjelmaa</h1>
+    <h1>Tarkastele treeniohjelmaa</h1>
 
-<p>Nimi: {{ routine.name }}</p>
-<p>Kategoria: {{ routine.category }}</p>
-<p>Ohjeet: {{ routine.instructions }}</p>
+    <div class="container">
+        <h2>Tiedot:</h2>
+        <p>Nimi: {{ routine.name }}</p>
+        <p>Kategoria: {{ routine.category }}</p>
+        <p>Ohjeet: {{ routine.instructions }}</p>
 
-<p>Liikkeet:</p>
-<ul>
-    {% for move in moves %}
-        <li> {{ routine_moves[1] }}: {{ routine_moves[2] }} kpl
-    {% endfor %}
-</ul>
-<hr>
+        <h2>Liikkeet:</h2>
+        <ul>
+            {% for move in moves %}
+                <li> {{ routine_moves[1] }}: {{ routine_moves[2] }} kpl
+            {% endfor %}
+        </ul>
+        <hr>
+    </div>
 
-<p>Lisää liikkeitä:</p>
-<form action="/user/{{ user[0] }}/routines/{{ routine[0] }}/add_moves" method="POST">
-    {% for move in all_moves %}
-        <p>Nimi: {{ move.name }}</p>
-        <p>Sarjat: <input type="integer" name="sets"></p>
-        <p>Toistot: <input type="integer" name="reps"></p>
-        <p>Vastus: <input type="float" name="load"></p>
-    {% endfor %}
-    <input type="submit" value="Lisää liikkeet">
-</form>
+    <div class="container">
+        <h2>Lisää liikkeitä:</h2>
+        <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}/add_moves" method="POST">
+            {% for move in all_moves %}
+                <p>Nimi: {{ move.name }}</p>
+                <p>Valitse: <input type="checkbox" name="move_id" value="{{ move.id }}"></p>
+                <p>Sarjat: <input type="integer" name="sets"></p>
+                <p>Toistot: <input type="integer" name="reps"></p>
+                <p>Vastus: <input type="float" name="load"></p>
+            {% endfor %}
+            <input class="submitbutton", type="submit" value="Lisää liikkeet">
+        </form>
+    </div>
 
-<a href="/user/{{ user[0] }}/routines">Takaisin</a>
+{% endblock %}
+
+{% block footer %}
+    <a href="/user/{{ user[0] }}/routines">Takaisin listaukseen</a><br>
+{% endblock %}

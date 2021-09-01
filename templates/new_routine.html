@@ -1,20 +1,29 @@
-<title>Uusi treeniohjelma</title>
+{% extends "layout.html" %}
+{% block title %} Uusi treeniohjelma {% endblock %}
+{% block content %}
 
-<h1>Uusi treeniohjelma</h1>
+    <h1>Uusi treeniohjelma</h1>
 
+    <div class="container">
+        <p>Tästä voit luoda uuden treeniohjelman.
+            Voit valita liikkeet ja muokata toistojen ja sarjojen määrää sekä 
+            vastusta treeniohjelman luomisen jälkeen.
+        </p>
+    
+        <form action="/user/{{ user[0] }}/routines/new" method="POST">
+            <p>Nimi: <input type="text" name="name"></p>
+            <p>Kategoria: <input type="text" name="category"></p>
+            <p>Ohjeet: <input type="text" name="instructions"></p>
+            <input class="submitbutton", type="submit" value="Tallenna">
+        </form>
 
-<p>Voit luoda uuden treeniohjelman valitsemalla liikkeet allaolevalta listalta.
-    Voit muokata toistojen ja sarjojen määrää sekä 
-    vastusta harjoituksen luomisen jälkeen.
-</p>
+        <form action="/user/{{ user[0] }}/routines">
+            <input class="linkbutton", type="submit" value="Takaisin listaukseen">
+        </form>
 
-<form action="/user/{{ user[0] }}/routines/new" method="POST">
-    <p>Nimi: <input type="text" name="name"></p>
-    <p>Kategoria: <input type="text" name="text"></p>
-    <p>Ohjeet: <input type="text" name="instructions"></p>
-    <input type="submit" value="Tallenna">
-</form>
+    </div>
 
+{% endblock %}
 
-<a href="/user/{{ user[0] }}/routines">Takaisin listaukseen</a><br>
-<a href="/user/{{ user[0] }}">Takaisin omalle sivulle</a><br>
+{% block footer %}
+{% endblock %}

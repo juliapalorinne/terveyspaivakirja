@@ -1,30 +1,41 @@
-<title>Harjoitus</title>
+{% extends "layout.html" %}
+{% block title %} Harjoitus {% endblock %}
+{% block content %}
 
-<h1>Tarkastele harjoitusta</h1>
+    <h1>Tarkastele harjoitusta</h1>
 
-<p>Nimi: {{ workout.name }}</p>
-<p>Kategoria: {{ workout.category }}</p>
-<p>Kommentit: {{ workout.comments }}</p>
+    <div class="container">
+        <h2>Tiedot:</h2>
+        <p>Nimi: {{ workout.name }}</p>
+        <p>Kategoria: {{ workout.category }}</p>
+        <p>Kommentit: {{ workout.comments }}</p>
 
-<p>Liikkeet:</p>
-<ul>
-    {% for move in moves %}
-        <p>Nimi: {{ move.name }}</p>
-        <li> {{ workout_moves[1] }}: {{ workout_moves[2] }} kpl
-    {% endfor %}
-</ul>
+        <h2>Liikkeet:</h2>
+        <ul>
+            {% for move in moves %}
+                <p>Nimi: {{ move.name }}</p>
+                <li> {{ workout_moves[1] }}: {{ workout_moves[2] }} kpl
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Lisää liikkeitä:</h2>
+        <form action="/user/{{ user[0] }}/workout/{{ workout[0] }}/log_moves" method="POST">
+            {% for move in all_moves %}
+                <p>Nimi: {{ move.name }}</p>
+                <p>Sarjat: <input type="integer" name="sets"></p>
+                <p>Toistot: <input type="integer" name="reps"></p>
+                <p>Vastus: <input type="float" name="load"></p>
+            {% endfor %}
+            <input class="submitbutton", type="submit" value="Lisää liikkeet">
+        </form>
+    </div>
 
 
-<p>Lisää liikkeitä:</p>
-<form action="/user/{{ user[0] }}/workout/{{ workout[0] }}/log_moves" method="POST">
-    {% for move in all_moves %}
-        <p>Nimi: {{ move.name }}</p>
-        <p>Sarjat: <input type="integer" name="sets"></p>
-        <p>Toistot: <input type="integer" name="reps"></p>
-        <p>Vastus: <input type="float" name="load"></p>
-    {% endfor %}
-    <input type="submit" value="Lisää liikkeet">
-</form>
+{% endblock %}
 
-<a href="/user/{{ user[0] }}/workouts">Takaisin listaukseen</a><br>
-<a href="/user/{{ user[0] }}">Takaisin omalle sivulle</a><br>
+{% block footer %}
+    <a href="/user/{{ user[0] }}/workouts">Takaisin listaukseen</a><br>
+    <a href="/user/{{ user[0] }}">Takaisin omalle sivulle</a><br>
+{% endblock %}

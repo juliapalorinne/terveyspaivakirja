@@ -6,29 +6,19 @@ from user import user_id
 
 
 # GET ALL ROUTINES
-@app.route("/user/<int:user_id>/routines")
+@app.route("/user/<int:user_id>/routines", methods=["GET"])
 def routines(user_id):
     list = get_all_routines(user_id)
     length = count=len(list)
     user = get_user_by_id(user_id)
-    return render_template("routines.html", routines = list, user = user)
-
-
-# GET ONE ROUTINE
-@app.route("/user/<int:user_id>/routines/<int:routine_id>")
-def see_routine(user_id, routineid):
-    routine = get_one_routine(user_id, workout_id)
-    user = get_user_by_id(user_id)
-    moves = get_all_moves_by_routine(user_id, routine_id)
-    all_moves = get_all_moves()
-    return render_template("routine.html", user = user, routine = routine, moves = moves, all_moves = all_moves)
+    return render_template("routines.html", routines=list, user=user)
 
 
 # GET NEW ROUTINE PAGE
 @app.route("/user/<int:user_id>/routines/new", methods=["GET"])
 def see_new_routine_page(user_id):
     user = get_user_by_id(user_id)
-    return render_template("new_routine.html", user = user)
+    return render_template("new_routine.html", user=user)
 
 
 # POST NEW ROUTINE
@@ -38,5 +28,29 @@ def new_routine(user_id):
     category = request.form["category"]
     instructions = request.form["instructions"]
     routine_id = add_routine(name, category, instructions, user_id)
+    
+    return redirect(see_routine(user_id, routine_id))
+
+
+# GET ONE ROUTINE
+@app.route("/user/<int:user_id>/routines/<int:routine_id>", methods=["GET"])
+def see_routine(user_id, routine_id):
+    routine = get_one_routine(user_id, routine_id)
+    user = get_user_by_id(user_id)
+    moves = get_all_moves_by_routine(routine_id)
+    all_moves = get_all_moves()
+
+    return render_template("routine.html", user=user, routine=routine, moves=moves, all_moves=all_moves)
+
+
+# ADD MOVES TO ROUTINE
+@app.route("/user/<int:user_id>/routines/<int:routine_id>/add_moves", methods=["POST"])
+def add_moves_to_routine(user_id, routine_id):
+    move_id = request.form["move_id"]
+    sets = request.form["sets"]
+    reps = request.form["reps"]
+    load = request.form["load"]
+    
+    move_to_routine(sets, reps, load, move_id, routine_id)
     
     return redirect(see_routine(user_id, routine_id))
