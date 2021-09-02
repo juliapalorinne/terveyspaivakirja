@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %} Muokkaa harjoitusta {% endblock %}
+{% block content %}
+
+    <h1>Muokkaa harjoitusta</h1>
+    
+    <div class="container">
+        <h2>Muuta tietoja</h2>
+        <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}/update" method="POST">            
+            <p>Nimi: {{ workout.name }}</p>
+            <p>Muuta nimeä:<input type="text" name="name"></p>
+            <br>
+            
+            <p>Aika: {{ workout.time.strftime("%d.%m.%Y %H:%M") }}</p>
+            <p>Muuta aikaa:<input type="datetime-local" name="time"></p>
+            <br>
+            
+            <p>Kategoria: {{ workout.category }}</p>
+            <p>Muuta kategoriaa:<input type="text" name="category"></p>
+            <br>
+            
+            <p>Lisätietoja: {{ workout.comments }}</p>
+            <p>Muuta lisätietoja:<input type="text" name="comments"></p>        
+            <br>
+            <input class="submitbutton", type="submit" value="Muuta tietoja">
+        </form>
+
+        <br>
+        <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}">
+            <input class="linkbutton",  type="submit" value="Palaa harjoitukseen">
+        </form>
+    </div>
+
+
+    <div class="container">
+        <h2>Poista liikkeitä</h2>
+        <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}/delete_moves" method="POST">            
+            <ul>
+                {% for move in moves %}
+                <li><p>Nimi: {{ move.move_name }}</p>
+                    <p>Sarjat: {{ move.sets }}</p>
+                    <p>Toistot: {{ move.reps }}</p>
+                    <p>Vastus: {{ move.load }} kg</p>
+                    <p>Poista: <input type="checkbox" name="move_id" value="{{ move.id }}"></p></li>
+                {% endfor %}
+                <input class="submitbutton", type="submit" value="Poista valitut liikkeet">
+            </ul>
+        </form>
+    </div>
+
+
+    <div class="container">
+        <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}/delete" method="POST">
+            <h2>Poista harjoitus</h2>
+            <input class="submitbutton", type="submit" value="Poista harjoitus">
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

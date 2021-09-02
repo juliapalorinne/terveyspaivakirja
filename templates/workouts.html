@@ -14,15 +14,15 @@
     
 
     <div class="container">
-        <hr>
-        {% for workout in workouts %}
-            <p>Nimi: {{ workout.name }}</p>
-            <p>Luotu: {{ workout.date.strftime("%Y-%m-%d %H:%M:%S") }}</p>
-            <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}">
-                <input class="linkbutton",  type="submit" value="Tarkastele harjoitusta">
-            </form>
-        <hr>
-        {% endfor %}
+        <ul>
+            {% for workout in workouts %}
+                <li><p>Nimi: {{ workout.name }}</p>
+                <p>Aika: {{ workout.time.strftime("%d.%m.%Y %H:%M") }}</p>
+                <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}">
+                    <input class="linkbutton",  type="submit" value="Tarkastele harjoitusta">
+                </form></li>
+            {% endfor %}
+        </ul>
     </div>
 
 {% endblock %}

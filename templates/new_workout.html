@@ -5,22 +5,25 @@
     <h1>Uusi harjoitus</h1>
 
     <div class="container">
-        <p>Voit luoda uuden harjoituksen joko lisäämällä kerralla 
-            luomasi treeniohjelman tai tallentamalla jokaisen liikkeen 
-            yksitellen. Voit muokata toistojen ja sarjojen määrää sekä 
-            vastusta harjoituksen luomisen jälkeen.
+        <h2>Luo uusi harjoitus</h2>
+        <p>Luo uusi harjoitus tallentamalla jokainen liike 
+            yksitellen. Voit muokata harjoituksen tietoja sekä toistojen ja sarjojen
+            määrää sekä vastusta harjoituksen luomisen jälkeen.
         </p>
 
         <form action="/user/{{ user[0] }}/workouts/new" method="POST">
             <p>Nimi: <input type="text" name="name"></p>
-            <p>Kategoria: <input type="text" name="text"></p>
+            <p>Kategoria: <input type="text" name="category"></p>
             <p>Kommentteja: <input type="text" name="comments"></p>
             <input class="submitbutton", type="submit" value="Tallenna">
         </form>
     </div>
 
     <div class="container">
-        <p>Lisää treeniohjelman pohjalta:</p>
+        <h2>Luo treeniohjelman pohjalta</h2>
+        <p>Luo uusi harjoitus olemassa olevan treeniohjelman pohjalta. Voit 
+            muokata harjoituksen tietoja sekä toistojen ja sarjojen määrää sekä 
+            vastusta harjoituksen luomisen jälkeen.</p>
         <form action="/user/{{ user[0] }}/workouts/new/log_routine">
             <input class="linkbutton",  type="submit" value="Valitse treeniohjelma">
         </form>

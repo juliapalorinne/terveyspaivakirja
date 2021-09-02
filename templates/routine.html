@@ -5,36 +5,60 @@
     <h1>Tarkastele treeniohjelmaa</h1>
 
     <div class="container">
-        <h2>Tiedot:</h2>
+        <h2>Tiedot</h2>
         <p>Nimi: {{ routine.name }}</p>
         <p>Kategoria: {{ routine.category }}</p>
         <p>Ohjeet: {{ routine.instructions }}</p>
 
-        <h2>Liikkeet:</h2>
-        <ul>
-            {% for move in moves %}
-                <li> {{ routine_moves[1] }}: {{ routine_moves[2] }} kpl
-            {% endfor %}
-        </ul>
-        <hr>
+        {% if moves%}
+            <br>
+            <h2>Liikkeet</h2>
+            <ul>
+                {% for move in moves %}
+                    <li><p>Nimi: {{ move.name }}</p>
+                    <p>Sarjat: {{ move.sets }}</p>
+                    <p>Toistot: {{ move.reps }}</p>
+                    <p>Vastus: {{ move.load }}</p></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <br>
+        <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}/update">
+            <input class="linkbutton",  type="submit" value="Muokkaa treeniohjelmaa">
+        </form>
+    </div>
+    
+    <div class="container">
+        <h2>Luo uusi harjoitus treeniohjelman pohjalta</h2>
+        <form action="/user/{{ user[0] }}/workouts/new/log_routine/{{ routine[0] }}">
+            <input class="linkbutton",  type="submit" value="Luo uusi harjoitus">
+        </form>
+
+        <br>
+        <h2>Treeniohjelmaan perustuvat harjoitukset</h2>
+        {% if workouts%}
+            <ul>
+                {% for workout in workouts %}
+                    <li><p>Nimi: {{ workout.name }}</p>
+                    <p>Aika: {{ workout.time.strftime("%d.%m.%Y %H:%M") }}</p>
+                    <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}">
+                        <input class="linkbutton",  type="submit" value="Tarkastele harjoitusta">
+                    </form></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Ei vielä treeniohjelmaan perustuvia harjoituksia</p>
+        {% endif %}
     </div>
 
     <div class="container">
-        <h2>Lisää liikkeitä:</h2>
-        <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}/add_moves" method="POST">
-            {% for move in all_moves %}
-                <p>Nimi: {{ move.name }}</p>
-                <p>Valitse: <input type="checkbox" name="move_id" value="{{ move.id }}"></p>
-                <p>Sarjat: <input type="integer" name="sets"></p>
-                <p>Toistot: <input type="integer" name="reps"></p>
-                <p>Vastus: <input type="float" name="load"></p>
-            {% endfor %}
-            <input class="submitbutton", type="submit" value="Lisää liikkeet">
+        <form action="/user/{{ user[0] }}/routines">
+            <input class="linkbutton",  type="submit" value="Takaisin listaukseen">
         </form>
     </div>
 
 {% endblock %}
 
 {% block footer %}
-    <a href="/user/{{ user[0] }}/routines">Takaisin listaukseen</a><br>
 {% endblock %}

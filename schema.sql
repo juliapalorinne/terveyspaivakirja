@@ -31,13 +31,15 @@ CREATE TABLE workouts(
 	time TIMESTAMP,
 	rating INTEGER,
 	comments TEXT,
-	user_id INTEGER REFERENCES users
+	user_id INTEGER REFERENCES users,
+	routine_id INTEGER REFERENCES routines
 );
 
 CREATE TABLE routine_moves (
 	id SERIAL PRIMARY KEY,
 	routine_id INTEGER REFERENCES routines,
 	move_id INTEGER REFERENCES moves,
+	move_name VARCHAR(100),
 	sets INTEGER,
 	reps INTEGER,
 	load FLOAT
@@ -47,6 +49,7 @@ CREATE TABLE workout_moves (
 	id SERIAL PRIMARY KEY,
 	workout_id INTEGER REFERENCES workouts,
 	move_id INTEGER REFERENCES moves,
+	move_name VARCHAR(100),
 	sets INTEGER,
 	reps INTEGER,
 	load FLOAT

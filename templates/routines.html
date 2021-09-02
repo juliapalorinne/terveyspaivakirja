@@ -7,22 +7,25 @@
     <div class="container">
         <p>Luo uusi treeniohjelma painikkeesta "Uusi treeniohjelma".</p>
 
-        <a href="/user/{{ user[0] }}/routines/new">Uusi treeniohjelma</a>
+        <form action="/user/{{ user[0] }}/routines/new">
+            <input class="linkbutton",  type="submit" value="Uusi treeniohjelma">
+        </form>
     </div>
 
     
     <div class="container">
-        <hr>
-        {% for routine in routines %}
-            Nimi: {{ routine.name }} <br>
-            Kategoria: {{ routine.category }} <br>
-            <a href="/user/{{ user[0] }}/routines/{{ routine[0] }}">Tarkastele treeniohjelmaa</a>
-        <hr>
-        {% endfor %}
+        <ul>
+            {% for routine in routines %}
+                <li><p>Nimi: {{ routine.name }}</p>
+                <p>Kategoria: {{ routine.category }}</p>
+                <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}">
+                    <input class="linkbutton",  type="submit" value="Tarkastele treeniohjelmaa">
+                </form></li>
+            {% endfor %}
+        </ul>>
     </div>
 
 {% endblock %}
 
 {% block footer %}
-    <a href="/user/{{ user[0] }}">Takaisin käyttäjäsivulle</a>
 {% endblock %}

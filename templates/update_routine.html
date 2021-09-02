@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block title %} Muokkaa treeniohjelmaa {% endblock %}
+{% block content %}
+
+    <h1>Muokkaa treeniohjelmaa</h1>
+    
+    <div class="container">
+        <h2>Muuta tietoja</h2>
+        <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}/update" method="POST">            
+            <p>Nimi: {{ routine.name }}</p>
+            <p>Muuta nimeä:<input type="text" name="name"></p>
+            <br>
+
+            <p>Kategoria: {{ routine.category }}</p>
+            <p>Muuta kategoriaa:<input type="text" name="category"></p>
+            <br>
+            
+            <p>Ohjeet: {{ routine.instructions }}</p>
+            <p>Muuta ohjeita: <textarea name="instructions" rows="3" cols="50"></textarea>></p>
+            <br>
+            <input class="submitbutton", type="submit" value="Muuta tietoja">
+        </form>
+
+        <br>
+        <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}">
+            <input class="linkbutton",  type="submit" value="Palaa treeniohjelmaan">
+        </form>
+    </div>
+
+    {% if moves%}
+        <div class="container">
+            <h2>Poista liikkeitä</h2>
+            <form action="/user/{{ user[0] }}routines/{{ routine[0] }}/delete_moves" method="POST">            
+                <ul>
+                    {% for move in moves %}
+                    <li><p>Nimi: {{ move.move_name }}</p>
+                        <p>Sarjat: {{ move.sets }}</p>
+                        <p>Toistot: {{ move.reps }}</p>
+                        <p>Vastus: {{ move.load }} kg</p>
+                        <p>Poista: <input type="checkbox" name="move_id" value="{{ move.id }}"></p></li>
+                    {% endfor %}
+                    <input class="submitbutton", type="submit" value="Poista valitut liikkeet">
+                </ul>
+            </form>
+        </div>
+    {% endif %}
+    
+    <div class="container">
+        <h2>Lisää liikkeitä</h2>
+        <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}/add_moves" method="POST">
+            {% for move in all_moves %}
+                <p>Nimi: {{ move.name }}</p>
+                <p>Valitse: <input type="checkbox" name="move_id" value="{{ move.id }}"></p>
+                <p>Sarjat: <input type="integer" name="sets"></p>
+                <p>Toistot: <input type="integer" name="reps"></p>
+                <p>Vastus: <input type="float" name="load"></p>
+            {% endfor %}
+            <input class="submitbutton", type="submit" value="Lisää liikkeet">
+        </form>
+
+        <br>
+        <form action="/moves/new">
+            <input class="linkbutton", type="submit" value="Luo uusi liike">
+        </form>
+    </div>
+
+    <div class="container">
+        <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}/delete" method="POST">
+            <h2>Poista treeniohjelma</h2>
+            <input class="submitbutton", type="submit" value="Poista treeniohjelma">
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

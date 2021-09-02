@@ -1,22 +1,44 @@
-<h1>Uusi harjoitus</h1>
+{% extends "layout.html" %}
+{% block title %} Treeniohjelma {% endblock %}
+{% block content %}
 
-<p>Luo uusi harjoitus tallentamasi treeniohjelman pohjalta.
-</p>
+    <h1>Luo harjoitus valitun treeniohjelman pohjalta</h1>
 
+    <div class="container">
+        <h2>Treeniohjelma</h2>
+        <p>Nimi: {{ routine.name }}</p>
+        <p>Kategoria: {{ routine.category }}</p>
+        <p>Ohjeet: {{ routine.instructions }}</p>
 
-<form action="/user/{{ user[0] }}/workouts/log_routine" method="POST">
-    <p>Nimi: <input type="text" name="name"></p>
-    <p>Kategoria: <input type="text" name="text"></p>
-    <p>Lisätietoja: <input type="text" name="comments"></p>
-    <input type="submit" value="Tallenna">
-</form>
+        <br>
+        <h2>Liikkeet:</h2>
+        <ul>
+            {% for workout in workouts %}
+                <li><p>Nimi: {{ move.name }}</p>
+                <p>Sarjat: {{ move.sets }}</p>
+                <p>Toistot: {{ move.reps }}</p>
+                <p>Vastus: {{ move.load }}</p></li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="container">
+        <h2>Luo harjoitus treeniohjelman pohjalta</h2>
+        <form action="/user/{{ user[0] }}/workouts/new/log_routine/{{ routine[0] }}" method="POST">
+            <p>Nimi: <input type="text" name="name"></p>
+            <p>Kategoria: <input type="text" name="category"></p>
+            <p>Kommentteja: <input type="text" name="comments"></p>
+            <input class="submitbutton", type="submit" value="Tallenna">
+        </form>
+    </div>
 
-<hr>
-{% for routine in routines %}
-    Nimi: {{ routine[1] }} <br>
-    Kategoria: {{ routine[2] }} <br>
-    <a href="/user/{{ user[0] }}/routines/{{ routine[0] }}">Tarkastele treeniohjelmaa</a>
-<hr>
-{% endfor %}
+    <div class="container">
+        <form action="/user/{{ user[0] }}/workouts/new/log_routine">
+            <input class="linkbutton",  type="submit" value="Takaisin listaukseen">
+        </form>
+    </div>
 
-<a href="/user/{{ user[0] }}/workouts/new/">Takaisin</a>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

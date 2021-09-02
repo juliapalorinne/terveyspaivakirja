@@ -19,7 +19,6 @@ def error_shown():
 @app.route("/")
 def index():
     reset_error_message()
-    print("moi")
     
     if not user_id():
         return render_template("index.html")
@@ -43,7 +42,6 @@ def login():
         if check_password_hash(hash_value, password):
             id = user.id
             session["user_id"] = id
-            remove_error_message()
             return show_user(id)
         else:
             session["error"] = "Salasana on virheellinen"
@@ -74,7 +72,6 @@ def post_new_user():
             add_user(username, hash_value)
             user = get_user(username)
             id = user.id
-            remove_error_message()
             return show_user(id)
         elif check_username(username) == False:
             session["error"] = "Käyttäjätunnus on virheellinen"
@@ -103,7 +100,6 @@ def add_name(id):
     name = request.form["name"]
     if check_name(name):
         change_name(id, name)
-        remove_error_message()
     else:
         session["error"] =  "Nimi on virheellinen"
         session["error_shown"] = 1
@@ -114,9 +110,8 @@ def add_name(id):
 @app.route("/user/<int:id>/change_birth_date", methods=["POST"])
 def add_birth_date(id):
     birth_date = request.form["birth_date"]
-    if check_date(birth_date):
+    if not_empty(birth_date):
         change_birth_date(id, birth_date)
-        remove_error_message()
     else:
         session["error"] = "Päivämäärä on virheellinen"
         session["error_shown"] = 1
@@ -129,7 +124,6 @@ def add_height(id):
     height = request.form["height"]
     if check_number(height):
         change_height(id, height)
-        remove_error_message()
     else:
         session["error"] = "Pituus on virheellinen"
         session["error_shown"] = 1
@@ -142,7 +136,6 @@ def add_weight(id):
     weight = request.form["weight"]
     if check_number(weight):
         change_weight(id, weight)
-        remove_error_message()
     else:
         session["error"] = "Paino on virheellinen"
         session["error_shown"] = 1
@@ -166,42 +159,34 @@ def update_user(id):
     height = request.form["height"]
     weight = request.form["weight"]
 
-    if check_name(username) and check_name(name) and check_number(height) and check_number(weight):
+    if check_name(username) and check_name(name) and check_number(height) and check_number(weight) and not_empty(birth_date):
         change_user_info(id, username, name, birth_date, height, weight)
-        remove_error_message()
         return show_user(id)
     else:
         if check_username(username):
             change_username(id, username)            
-        else:
+        elif len(username) > 0:
             session["error"] = "Käyttäjänimi on virheellinen"
             session["error_shown"] = 1
 
         if check_name(name):
             change_name(id, name)
-            remove_error_message()
-        else:
+        elif len(name) > 0:
             session["error"] = "Nimi on virheellinen"
             session["error_shown"] = 1
 
-        if check_date(birth_date):
+        if not_empty(birth_date):
             change_birth_date(id, birth_date)
-            remove_error_message()
-        else:
-            session["error"] = "Päivämäärä on virheellinen"
-            session["error_shown"] = 1
 
         if check_number(height):
             change_height(id, height)
-            remove_error_message()
-        else:
+        elif len(height) > 0:
             session["error"] = "Pituus on virheellinen"
             session["error_shown"] = 1
 
         if check_number(weight):
             change_weight(id, weight)
-            remove_error_message()
-        else:
+        elif len(weight) > 0:
             session["error"] = "Paino on virheellinen"
             session["error_shown"] = 1
 
@@ -221,7 +206,6 @@ def update_password(id):
         if password == password_again:
             hash_value = generate_password_hash(password)
             change_password(id, hash_value)
-            remove_error_message()
             return show_user(id)
         else:
             session["error"] = "Salasanat eivät täsmää"
@@ -232,12 +216,13 @@ def update_password(id):
     return get_user_update(id)
 
 
-# CHANGE PASSWORD
+# DELETE USER
 @app.route("/user/<int:id>/delete", methods=["POST"])
-def delete_user(id):
+def delete_user_and_workouts(id):
     password = request.form["password"]
     user = get_user_by_id(id)
     hash_value = user.password
+
     if check_password_hash(hash_value, password):
         workout_list = get_all_workouts(id)
         for workout in workout_list:
@@ -248,7 +233,7 @@ def delete_user(id):
             delete_routine(id, routine.id)
         
         delete_user(id)
-        return logout()
+        return index()
     else:
         session["error"] = "Salasana on virheellinen"
         session["error_shown"] = 1

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %} Valitse treeniohjelma {% endblock %}
+{% block content %}
+
+    <h1>Valitse treeniohjelma</h1>
+    
+    <div class="container">
+        <h2>Valitse treeniohjelma seuraavalta listalta</h2>
+        <ul>
+            {% for routine in routines %}
+                <li><p>Nimi: {{ routine.name }}</p>
+                <p>Kategoria: {{ routine.category }}</p>
+                <form action="/user/{{ user[0] }}/workouts/new/log_routine/{{ routine[0] }}">
+                    <input class="linkbutton",  type="submit" value="Valitse treeniohjelma">
+                </form></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Luo uusi treeniohjelma</h2>
+        <p>Luo uusi treeniohjelma painikkeesta "Uusi treeniohjelma".</p>
+
+        <form action="/user/{{ user[0] }}/routines/new">
+            <input class="linkbutton",  type="submit" value="Uusi treeniohjelma">
+        </form>
+    </div>
+
+    <div class="container">
+        <form action="/user/{{ user[0] }}/workouts/new">
+            <input class="linkbutton",  type="submit" value="Takaisin">
+        </form>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

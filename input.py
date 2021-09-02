@@ -33,7 +33,7 @@ def check_number(input):
     return False
 
 
-def check_date(input):
+def not_empty(input):
     if not input:
-        return True
-    return False
+        return False
+    return True

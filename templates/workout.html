@@ -7,35 +7,57 @@
     <div class="container">
         <h2>Tiedot:</h2>
         <p>Nimi: {{ workout.name }}</p>
+        <p>Aika: {{ workout.time.strftime("%d.%m.%Y %H:%M") }}</p>
         <p>Kategoria: {{ workout.category }}</p>
-        <p>Kommentit: {{ workout.comments }}</p>
+        <p>Lisätiedot: {{ workout.comments }}</p>
 
-        <h2>Liikkeet:</h2>
-        <ul>
-            {% for move in moves %}
-                <p>Nimi: {{ move.name }}</p>
-                <li> {{ workout_moves[1] }}: {{ workout_moves[2] }} kpl
-            {% endfor %}
-        </ul>
+        <br>
+        {% if moves%}
+            <h2>Liikkeet:</h2> 
+            <ul>
+                {% for move in moves %}
+                    <li><p>Nimi: {{ move.move_name }}</p>
+                    <p>Sarjat: {{ move.sets }}</p>
+                    <p>Toistot: {{ move.reps }}</p>
+                    <p>Vastus: {{ move.load }} kg</p></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+        <br>
+        <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}/update">
+            <input class="linkbutton",  type="submit" value="Muokkaa harjoitusta">
+        </form>
     </div>
 
     <div class="container">
         <h2>Lisää liikkeitä:</h2>
-        <form action="/user/{{ user[0] }}/workout/{{ workout[0] }}/log_moves" method="POST">
-            {% for move in all_moves %}
-                <p>Nimi: {{ move.name }}</p>
-                <p>Sarjat: <input type="integer" name="sets"></p>
-                <p>Toistot: <input type="integer" name="reps"></p>
-                <p>Vastus: <input type="float" name="load"></p>
-            {% endfor %}
+        <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}/log_moves" method="POST">
+            <ul>
+                {% for move in all_moves %}
+                    <li><p>Nimi: {{ move.name }}</p>
+                    <p>Valitse: <input type="checkbox" name="move_id" value="{{ move.id }}"></p>
+                    <p>Sarjat: <input type="integer" name="sets{{ move.id }}"></p>
+                    <p>Toistot: <input type="integer" name="reps{{ move.id }}"></p>
+                    <p>Vastus (kg): <input type="float" name="load{{ move.id }}"></p></li>
+                {% endfor %}
+            </ul>
             <input class="submitbutton", type="submit" value="Lisää liikkeet">
+        </form>
+
+        <br>
+        <form action="/moves/new">
+            <input class="linkbutton", type="submit" value="Luo uusi liike">
         </form>
     </div>
 
+    <div class="container">
+        <form action="/user/{{ user[0] }}/workouts">
+            <input class="linkbutton",  type="submit" value="Takaisin listaukseen">
+        </form>
+    </div>
 
 {% endblock %}
 
 {% block footer %}
-    <a href="/user/{{ user[0] }}/workouts">Takaisin listaukseen</a><br>
-    <a href="/user/{{ user[0] }}">Takaisin omalle sivulle</a><br>
 {% endblock %}
