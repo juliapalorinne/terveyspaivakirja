@@ -9,13 +9,12 @@
 
     {% else %}
         <form action="/" method="POST">
-            <p>Tunnus:<br>
-                <input type="text" name="username"></p>
-            <p>Salasana:<br>
-                <input type="password" name="password"></p>
-                <input class="submitbutton", type="submit" value="Kirjaudu">
+            <table class="inputtable">
+                <tr><td>Tunnus:</td><td><input type="text" name="username"></td></tr>
+                <tr><td>Salasana:</td><td><input type="password" name="password"></td></tr>
+            </table>
+            <input class="submitbutton", type="submit" value="Kirjaudu">
         </form>
-
     {% endif %}
 </div>
 

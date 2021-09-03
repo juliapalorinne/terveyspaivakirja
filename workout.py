@@ -30,14 +30,14 @@ def new_workout(user_id):
     category = request.form["category"]
     comments = request.form["comments"]
 
-    if check_name(name) and check_name(category) and len(comments) < 1000:
+    if check_name(name) and check_text(category) and len(comments) < 1000:
         workout_id = add_workout(user_id, name, category, comments)
         return see_workout(user_id, workout_id)
     else:
         if check_name(name) == False:
             session["error"] = "Nimi on virheellinen"
             session["error_shown"] = 1
-        if check_name(category) == False:
+        if check_text(category) == False:
             session["error"] = "Kategoria on virheellinen"
             session["error_shown"] = 1
         if len(comments) >= 1000:
@@ -113,7 +113,7 @@ def update_workout(user_id, workout_id):
     category = request.form["category"]
     comments = request.form["comments"]
 
-    if check_name(name) and check_name(category) and not_empty(time) and check_text(comments):
+    if check_name(name) and check_text(category) and not_empty(time) and check_text(comments):
         workout_id = change_workout_info(workout_id, name, time, category, comments)
         return see_workout(user_id, workout_id)
     else:
@@ -123,7 +123,7 @@ def update_workout(user_id, workout_id):
             session["error"] = "Nimi on virheellinen"
             session["error_shown"] = 1
         
-        if check_name(category):
+        if check_text(category):
             change_workout_category(workout_id, category)
         elif len(category) > 0:
             session["error"] = "Kategoria on virheellinen"
@@ -148,6 +148,8 @@ def delete_moves_from_workout(user_id, workout_id):
 
     if not_empty(moves):
         for move_id in moves:
+            print(move_id)
+            print(workout_id)
             delete_move_from_workout(move_id, workout_id)
     else:
         session["error"] = "Yhtään liikettä ei valittu"
@@ -191,8 +193,10 @@ def log_routine(user_id, routine_id):
     category = request.form["category"]
     comments = request.form["comments"]
 
-    if check_name(name) and check_name(category) and len(comments) < 1000:
+    if check_name(name) and check_text(category) and len(comments) < 1000:
         workout_id = add_workout(user_id, name, category, comments)
+        link_workout_to_routine(workout_id, routine_id)
+        
         for move in moves:
             sets = move.sets
             reps = move.reps
@@ -206,7 +210,7 @@ def log_routine(user_id, routine_id):
         if check_name(name) == False:
             session["error"] = "Nimi on virheellinen"
             session["error_shown"] = 1
-        if check_name(category) == False:
+        if check_text(category) == False:
             session["error"] = "Kategoria on virheellinen"
             session["error_shown"] = 1
         if len(comments) >= 1000:
@@ -220,6 +224,7 @@ def log_routine(user_id, routine_id):
 @app.route("/user/<int:user_id>/workouts/<int:workout_id>/log_routine/<int:routine_id>", methods=["POST"])
 def post_routine_to_workout(user_id, workout_id, routine_id):
     moves = get_all_moves_by_routine(routine_id)
+    link_workout_to_routine(workout_id, routine_id)
 
     for move in moves:
         sets = move.sets

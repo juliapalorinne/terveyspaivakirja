@@ -5,8 +5,8 @@
     <h1>Muokkaa harjoitusta</h1>
     
     <div class="container">
-        <h2>Muuta tietoja</h2>
         <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}/update" method="POST">            
+            <h2>Muuta tietoja</h2>
             <table class="inputtable">
                 <tr><td>Nimi:</td><td>{{ workout.name }}</td></tr>
                 <tr><td>Muuta nimeä:</td><td><input type="text" name="name"></td></tr>
@@ -23,39 +23,41 @@
             <br>
             <input class="submitbutton", type="submit" value="Muuta tietoja">
         </form>
-
-        <br>
+    </div>
+    
+    <div class="container">
         <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}">
             <input class="linkbutton",  type="submit" value="Palaa harjoitukseen">
         </form>
     </div>
 
-
-    <div class="container">
-        <h2>Poista liikkeitä</h2>
-        <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}/delete_moves" method="POST">            
-            <table class="movetable">
-                <tr>
-                    <th>Nimi</th>
-                    <th>Sarjat</th>
-                    <th>Toistot</th>
-                    <th>Vastus (kg)</th>
-                    <th>Poista</th>
-                </tr>
-                {% for move in moves %}
-                <tr>
-                    <td>{{ move.move_name }}</td>
-                    <td>{{ move.sets }}</td>
-                    <td>{{ move.reps }}</td>
-                    <td>{{ move.load }} kg</td>
-                    <td><input type="checkbox" name="move_id" value="{{ move.id }}"></td>
-                </tr>
-                {% endfor %}
-            </table>
-            <br>
-            <input class="submitbutton", type="submit" value="Poista valitut liikkeet">
-        </form>
-    </div>
+    {% if moves %}
+        <div class="container">
+            <h2>Poista liikkeitä</h2>
+            <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}/delete_moves" method="POST">            
+                <table class="movetable">
+                    <tr>
+                        <th>Nimi</th>
+                        <th>Sarjat</th>
+                        <th>Toistot</th>
+                        <th>Vastus (kg)</th>
+                        <th>Poista</th>
+                    </tr>
+                    {% for move in moves %}
+                    <tr>
+                        <td>{{ move.move_name }}</td>
+                        <td>{{ move.sets }}</td>
+                        <td>{{ move.reps }}</td>
+                        <td>{{ move.load }} kg</td>
+                        <td><input type="checkbox" name="move_id" value="{{ move.move_id }}"></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <br>
+                <input class="submitbutton", type="submit" value="Poista valitut liikkeet">
+            </form>
+        </div>
+    {% endif %}
 
 
     <div class="container">

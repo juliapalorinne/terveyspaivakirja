@@ -15,18 +15,22 @@
     
 
     <div class="container">
-        <h2>Valmiit harjoitukset</h2>
-        <ul>
-            {% for workout in workouts %}
-            <li><table class="listtable">
-                <tr><td>Nimi:</td><td>{{ workout.name }}</td>
-                <tr><td>Aika:</td><td>{{ workout.time.strftime("%d.%m.%Y %H:%M") }}</td></tr>
-            </table>
-            <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}">
-                <input class="linkbutton",  type="submit" value="Tarkastele harjoitusta">
-            </form></li>
-            {% endfor %}
-        </ul>
+        <h2>Tallennetut harjoitukset</h2>    
+        {% if workouts %}
+            <ul>
+                {% for workout in workouts %}
+                <li><table class="listtable">
+                    <tr><td>Nimi:</td><td>{{ workout.name }}</td>
+                    <tr><td>Aika:</td><td>{{ workout.time.strftime("%d.%m.%Y %H:%M") }}</td></tr>
+                </table>
+                <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}">
+                    <input class="linkbutton",  type="submit" value="Tarkastele harjoitusta">
+                </form></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Ei vielä tallennettuja harhoituksia.</p>
+        {% endif %}
     </div>
 
 {% endblock %}

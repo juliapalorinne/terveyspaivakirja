@@ -127,6 +127,11 @@ def add_workout(user_id, name, category, comments):
     workout_id = result.fetchone()[0]
     return workout_id
 
+def link_workout_to_routine(workout_id, routine_id):
+    sql = "UPDATE workouts SET routine_id=:routine_id WHERE id=:id"
+    db.session.execute(sql, {"routine_id":routine_id, "id":workout_id})
+    db.session.commit()
+
 
 def change_workout_info(workout_id, name, time, category, comments):
     sql = "UPDATE workouts SET (name=:name, category=:category, comments=:comments, time=:time) WHERE id=:id"
@@ -166,9 +171,9 @@ def change_workout_routine(workout_id, routine_id):
 
 def delete_move_from_workout(move_id, workout_id):
     sql = "DELETE FROM workout_moves WHERE move_id=:move_id AND workout_id=:workout_id"
-    db.session.execute(sql, {"move_id":move_id, "workout_id":workout_id})
+    result = db.session.execute(sql, {"move_id":move_id, "workout_id":workout_id})
     db.session.commit()
-
+    
 
 def delete_workout(user_id, workout_id):
     sql = "DELETE FROM workout_moves WHERE workout_id=:workout_id"

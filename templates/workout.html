@@ -6,13 +6,14 @@
 
     <div class="container">
         <h2>Tiedot:</h2>
-        <p>Nimi: {{ workout.name }}</p>
-        <p>Aika: {{ workout.time.strftime("%d.%m.%Y %H:%M") }}</p>
-        <p>Kategoria: {{ workout.category }}</p>
-        <p>Lisätiedot: {{ workout.comments }}</p>
-
+        <table class="inputtable">
+            <tr><td>Nimi:</td><td>{{ workout.name }}</td>
+            <tr><td>Aika:</td><td>{{ workout.time.strftime("%d.%m.%Y %H:%M") }}</td></tr>
+            <tr><td>Kategoria::</td><td>{{ workout.category }}</td></tr>
+            <tr><td>Lisätiedot:</td><td>{{ workout.comments }}</td></tr>
+        </table>
         <br>
-        {% if moves%}
+        {% if moves %}
             <h2>Liikkeet:</h2> 
             <table class="movetable">
                 <tr>

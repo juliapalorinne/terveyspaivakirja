@@ -10,10 +10,9 @@ from input import *
 @app.route("/user/<int:user_id>/routines", methods=["GET"])
 def routines(user_id):
     reset_error_message()
-    list = get_all_routines(user_id)
-    length = count=len(list)
+    routines = get_all_routines(user_id)
     user = get_user_by_id(user_id)
-    return render_template("routines.html", routines=list, user=user)
+    return render_template("routines.html", routines=routines, user=user)
 
 
 # GET NEW ROUTINE PAGE
@@ -31,14 +30,14 @@ def new_routine(user_id):
     category = request.form["category"]
     instructions = request.form["instructions"]
 
-    if check_name(name) and check_name(category) and len(instructions) < 1000:
+    if check_name(name) and check_text(category) and len(instructions) < 1000:
         routine_id = add_routine(name, category, instructions, user_id)
         return see_routine(user_id, routine_id)
     else:
         if check_name(name) == False:
             session["error"] = "Nimi on virheellinen"
             session["error_shown"] = 1
-        if check_name(category) == False:
+        if check_text(category) == False:
             session["error"] = "Kategoria on virheellinen"
             session["error_shown"] = 1
         if len(instructions) >= 1000:
@@ -114,7 +113,7 @@ def update_routine(user_id, routine_id):
     category = request.form["category"]
     comments = request.form["comments"]
 
-    if check_name(name) and check_name(category) and len(comments) < 1000:
+    if check_name(name) and check_text(category) and len(comments) < 1000:
         routine_id = change_routine_info(routine_id, name, time, category, comments)
         return see_routine(user_id, routine_id)
     else:
@@ -124,7 +123,7 @@ def update_routine(user_id, routine_id):
             session["error"] = "Nimi on virheellinen"
             session["error_shown"] = 1
         
-        if check_name(category):
+        if check_text(category):
             change_routine_category(routine_id, category)
         elif len(category) > 0:
             session["error"] = "Kategoria on virheellinen"

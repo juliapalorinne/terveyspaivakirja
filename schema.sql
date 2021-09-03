@@ -2,7 +2,7 @@ CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
 	username VARCHAR(30) UNIQUE,
 	password VARCHAR(50),
-	role
+	role VARCHAR(10),
 	name VARCHAR(100),
 	birth_date DATE,
 	height INTEGER,

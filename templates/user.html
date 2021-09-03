@@ -7,45 +7,41 @@
     <p>Olet kirjautunut käyttäjänimellä {{ user.username }}.</p>
 
     <div class="container">
-        <h2>Omat tiedot</h2>
-
-        {% if user.name != None %}
-            <p>Nimi: {{ user.name }}</p>
-        {% else %}
+        <table class="inputtable">
+            <h2>Omat tiedot</h2>
+            {% if user.name != None %}
+                <tr><td>Nimi:</td><td>{{ user.name }}</td></tr>
+            {% else %}
             <form action="/user/{{ user[0] }}/change_name" method="POST">
-                <p>Nimi:<input type="text" name="name">
-                    <input class="submitbutton", type="submit" value="Lisää nimi"></p>
+                <tr><td>Nimi</td><td><input type="text" name="name">
+                    <input class="submitbutton", type="submit" value="Lisää nimi"></td></tr>
             </form>
-        {% endif %}
-
-        {% if user.birth_date != None %}
-            <p>Syntymäaika: {{ user.birth_date }}</p>
-        {% else %}
+            {% endif %}
+            {% if user.birth_date != None %}
+                <tr><td>Syntymäaika:</td><td>{{ user.birth_date }}</td></tr>
+            {% else %}
             <form action="/user/{{ user[0] }}/change_birth_date" method="POST">
-                <p>Syntymäaika<input type="date" name="birth_date">
-                    <input class="submitbutton", type="submit" value="Lisää syntymäaika"></p>
-                
+                <tr><td>Syntymäaika:</td><td><input type="date" name="birth_date">
+                    <input class="submitbutton", type="submit" value="Lisää syntymäaika"></td></tr>
             </form>
-        {% endif %}
-
-        {% if user.height != None %}
-            <p>Pituus: {{ user.height }}</p>
-        {% else %}
+            {% endif %}
+            {% if user.height != None %}
+                <tr><td>Pituus:</td><td>{{ user.height }} cm</td></tr>
+            {% else %}
             <form action="/user/{{ user[0] }}/change_height" method="POST">
-                <p>Pituus<input type="integer" name="height">
-                    <input class="submitbutton", type="submit" value="Lisää pituus"></p>
+                <tr><td>Pituus</td><td><input type="integer" name="height">
+                    <input class="submitbutton", type="submit" value="Lisää pituus"></td></tr>
             </form>
-        {% endif %}
-
-        {% if user.weight != None %}
-            <p>Paino: {{ user.weight }}</p>
-        {% else %}
+            {% endif %}
+            {% if user.weight != None %}
+                <tr><td>Paino:</td><td>{{ user.weight }} kg</td></tr>
+            {% else %}
             <form action="/user/{{ user[0] }}/change_weight" method="POST">
-                <p>Paino<input type="integer" name="weight">
-                    <input class="submitbutton", type="submit" value="Lisää paino"></p>        
+                <tr><td>Paino</td><td><input type="integer" name="weight">
+                    <input class="submitbutton", type="submit" value="Lisää paino"></td></tr>
             </form>
-        {% endif %}
-
+            {% endif %}
+        </table>         
         <br>
         <form action="/user/{{ user[0] }}/update">
             <input class="linkbutton", type="submit" value="Muuta tietoja">
@@ -56,7 +52,7 @@
     <div class="container">
         <h2>Harjoitukset</h2>
         <p>Omia harjoituksia yhteensä {{ workouts }} kpl.</p>
-        <br>
+        <br></br>
         <form action="/user/{{ user[0] }}/workouts">
             <input class="linkbutton",  type="submit" value="Omat harjoitukset">
         </form>
@@ -69,7 +65,7 @@
     <div class="container">
         <h2>Treeniohjelmat</h2>
         <p>Omia treeniohjelmia yhteensä {{ routines }} kpl.</p>
-        <br>
+        <br></br>
         <form action="/user/{{ user[0] }}/routines">
             <input class="linkbutton", type="submit" value="Omat treeniohjelmat">
         </form>

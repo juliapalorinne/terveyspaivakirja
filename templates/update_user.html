@@ -3,9 +3,10 @@
 {% block content %}
 
     <h1>Muuta käyttäjätietoja</h1>
+    
     <div class="container">
-        <h2>Muuta tietoja</h2>
         <form action="/user/{{ user[0] }}/update" method="POST">
+            <h2>Muuta tietoja</h2>
             <table class="inputtable">
                 <tr><td>Käyttäjätunnus:</td><td>{{ user.username }}</td></tr>
                 <tr><td>Muuta käyttäjätunnusta:</td><td><input type="text" name="username"></td></tr>
