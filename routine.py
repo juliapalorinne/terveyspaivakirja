@@ -68,9 +68,9 @@ def add_moves_to_routine(user_id, routine_id):
 
     if not_empty(moves):
         for move_id in moves:
-            sets = request.form["sets"]
-            reps = request.form["reps"]
-            load = request.form["load"]/log_moves
+            sets = request.form["sets" + move_id]
+            reps = request.form["reps" + move_id]
+            load = request.form["load" + move_id]
             move = get_one_move(move_id)
 
             if check_number(sets) and check_number(reps) and check_number(load):

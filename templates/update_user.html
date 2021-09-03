@@ -3,40 +3,38 @@
 {% block content %}
 
     <h1>Muuta käyttäjätietoja</h1>
-    
     <div class="container">
+        <h2>Muuta tietoja</h2>
         <form action="/user/{{ user[0] }}/update" method="POST">
-            
-            <h2>Muuta tietoja</h2>
-            <p>Käyttäjätunnus: {{ user.username }}</p>
-            <p>Muuta käyttäjätunnusta:<input type="text" name="name"></p>
+            <table class="inputtable">
+                <tr><td>Käyttäjätunnus:</td><td>{{ user.username }}</td></tr>
+                <tr><td>Muuta käyttäjätunnusta:</td><td><input type="text" name="username"></td></tr>
             <br>
-            
-            <p>Nimi: {{ user.name }}</p>
-            <p>Muuta nimeä:<input type="text" name="name"></p>
+                <tr><td>Nimi:</td><td>{{ user.name }}</td></tr>
+                <tr><td>Muuta nimeä:</td><td><input type="text" name="name"></td></tr>
             <br>
-            
-            <p>Syntymäaika: {{ user.birth_date }}</p>
-            <p>Muuta syntymäaikaa:<input type="date" name="birth_date"></p>
+                <tr><td>Syntymäaika:</td><td>{{ user.birth_date }}</td></tr>
+                <tr><td>Muuta syntymäaikaa:</td><td><input type="date" name="birth_date"></td></tr>
             <br>
-            
-            <p>Pituus: {{ user.height }}</p>
-            <p>Muuta pituutta:<input type="integer" name="height"></p>
+                <tr><td>Pituus:</td><td>{{ user.height }} cm</td></tr>
+                <tr><td>Muuta pituutta:</td><td><input type="integer" name="height"></td></tr>
             <br>
-            
-            <p>Paino: {{ user.weight }}</p>
-            <p>Muuta painoa:<input type="integer" name="weight"></p>        
+                <tr><td>Paino:</td><td>{{ user.weight }} kg</td></tr>
+                <tr><td>Muuta painoa:</td><td><input type="float" name="weight"></td></tr>
+            </table>      
             <br>
             <input class="submitbutton", type="submit" value="Muuta tietoja">
         </form>
     </div>
      
     <div class="container">
+        <h2>Muuta salasanaa</h2>
         <form action="/user/{{ user[0] }}/change_password" method="POST">
-            <h2>Muuta salasanaa</h2>
-            <p>Vanha salasana:<input type="password" name="old_password"></p>
-            <p>Salasana:<input type="password" name="password"></p>
-            <p>Salasana uudestaan:<input type="password" name="password_again"></p>
+            <table class="inputtable">
+                <tr><td>Vanha salasana:</td><td><input type="password" name="old_password"></td></tr>
+                <tr><td>Salasana:</td><td><input type="password" name="password"></td></tr>
+                <tr><td>Salasana uudestaan:</td><td><input type="password" name="password_again"></td></tr>
+            </table>      
             <br>
             <input class="submitbutton", type="submit" value="Muuta tietoja">
         </form>
@@ -44,9 +42,11 @@
 
 
     <div class="container">
+        <h2>Poista käyttäjä</h2>
         <form action="/user/{{ user[0] }}/delete" method="POST">
-            <h2>Poista käyttäjä</h2>
-            <p>Anna salasana:<input type="password" name="password"></p>
+            <table class="inputtable">
+                <tr><td>Anna salasana:</td><td><input type="password" name="password"></td></tr>
+            </table>
             <br>
             <input class="submitbutton", type="submit" value="Poista käyttäjä">
         </form>

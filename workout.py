@@ -10,10 +10,9 @@ from input import *
 @app.route("/user/<int:user_id>/workouts")
 def workouts(user_id):
     reset_error_message()
-    list = get_all_workouts(user_id)
-    length = count=len(list)
+    workouts = get_all_workouts(user_id)
     user = get_user_by_id(user_id)
-    return render_template("workouts.html", workouts=list, user=user)
+    return render_template("workouts.html", workouts=workouts, user=user)
 
 
 # GET NEW WORKOUT PAGE
@@ -160,7 +159,7 @@ def delete_moves_from_workout(user_id, workout_id):
 # DELETE WORKOUT
 @app.route("/user/<int:user_id>/workouts/<int:workout_id>/delete", methods=["POST"])
 def delete_this_workout(user_id, workout_id):
-    delete_workout(workout_id)
+    delete_workout(user_id, workout_id)
     return workouts(user_id)
 
 
@@ -199,7 +198,8 @@ def log_routine(user_id, routine_id):
             reps = move.reps
             load = move.load
             move_id = move.move_id
-            add_move_to_workout(sets, reps, load, move_id, workout_id)
+            move_name = move.move_name
+            add_move_to_workout(sets, reps, load, move_id, move_name, workout_id)
 
         return see_workout(user_id, workout_id)
     else:

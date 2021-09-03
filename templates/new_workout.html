@@ -12,9 +12,12 @@
         </p>
 
         <form action="/user/{{ user[0] }}/workouts/new" method="POST">
-            <p>Nimi: <input type="text" name="name"></p>
-            <p>Kategoria: <input type="text" name="category"></p>
-            <p>Kommentteja: <input type="text" name="comments"></p>
+            <table class="inputtable">
+                <tr><td>Nimi:</td><td><input type="text" name="name"></td></tr>
+                <tr><td>Kategoria:</td><td><input type="text" name="category"></td></tr>
+                <tr><td>Lisätietoja:</td><td><textarea name="comments" rows="3" cols="50"></textarea></td></tr>
+            </table>
+            <br>
             <input class="submitbutton", type="submit" value="Tallenna">
         </form>
     </div>

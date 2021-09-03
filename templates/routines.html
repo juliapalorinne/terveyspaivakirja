@@ -5,6 +5,7 @@
     <h1>Tallennetut treeniohjelmat</h1>
     
     <div class="container">
+        <h2>Luo uusi</h2>
         <p>Luo uusi treeniohjelma painikkeesta "Uusi treeniohjelma".</p>
 
         <form action="/user/{{ user[0] }}/routines/new">
@@ -14,15 +15,18 @@
 
     
     <div class="container">
+        <h2>Valmiit treeniohjelmat</h2>
         <ul>
             {% for routine in routines %}
-                <li><p>Nimi: {{ routine.name }}</p>
-                <p>Kategoria: {{ routine.category }}</p>
-                <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}">
-                    <input class="linkbutton",  type="submit" value="Tarkastele treeniohjelmaa">
-                </form></li>
+                <li><table class="listtable">
+                    <tr><th>Nimi:</th><th>{{ routine.name }}</th></tr>
+                    <tr><th>Kategoria:</th><th>{{ routine.category }}</th></tr>
+                    <tr><th><form action="/user/{{ user[0] }}/routines/{{ routine[0] }}">
+                        <input class="linkbutton",  type="submit" value="Tarkastele treeniohjelmaa">
+                    </form></th></tr>
+                </table></li>
             {% endfor %}
-        </ul>>
+        </ul>
     </div>
 
 {% endblock %}

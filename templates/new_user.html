@@ -5,13 +5,13 @@
     <h1>Luo uusi käyttäjä</h1>
     
     <div class="container">
-        <form action="/new_user" method="POST" onsubmit="return check(this)">
-            <p>Käyttäjätunnus:<br>
-                <input type="text" name="username"></p>
-            <p>Salasana:<br>
-                <input type="password" name="password"></p>
-            <p>Salasana uudestaan:<br>
-                <input type="password" name="password_again"></p>
+        <form action="/new_user" method="POST">
+            <table class="inputtable">
+                <tr><td>Käyttäjätunnus:</td><td><input type="text" name="username"></td></tr>
+                <tr><td>Salasana:</td><td><input type="password" name="password"></td></tr>
+                <tr><td>Salasana uudestaan:</td><td><input type="password" name="password_again"></td></tr>
+            </table>      
+            <br>
             <input class="submitbutton", type="submit" value="Luo käyttäjä">
         </form>
     </div>

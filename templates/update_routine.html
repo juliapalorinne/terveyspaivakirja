@@ -7,16 +7,16 @@
     <div class="container">
         <h2>Muuta tietoja</h2>
         <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}/update" method="POST">            
-            <p>Nimi: {{ routine.name }}</p>
-            <p>Muuta nimeä:<input type="text" name="name"></p>
+            <table class="inputtable">
+                <tr><td>Nimi:</td><td>{{ routine.name }}</td></tr>
+                <tr><td>Muuta nimeä:</td><td><input type="text" name="name"></td></tr>
             <br>
-
-            <p>Kategoria: {{ routine.category }}</p>
-            <p>Muuta kategoriaa:<input type="text" name="category"></p>
+                <tr><td>Kategoria:</td><td>{{ routine.category }}</td></tr>
+                <tr><td>Muuta kategoriaa:</td><td><input type="text" name="category"></td></tr>
             <br>
-            
-            <p>Ohjeet: {{ routine.instructions }}</p>
-            <p>Muuta ohjeita: <textarea name="instructions" rows="3" cols="50"></textarea>></p>
+                <tr><td>Ohjeet:</td><td>{{ routine.instructions }}</td></tr>
+                <tr><td>Muuta ohjeita:</td><td><textarea name="instructions" rows="3" cols="50"></textarea></td></tr>
+            </table>
             <br>
             <input class="submitbutton", type="submit" value="Muuta tietoja">
         </form>
@@ -31,16 +31,26 @@
         <div class="container">
             <h2>Poista liikkeitä</h2>
             <form action="/user/{{ user[0] }}routines/{{ routine[0] }}/delete_moves" method="POST">            
-                <ul>
+                <table class="movetable">
+                    <tr>
+                        <th>Nimi</th>
+                        <th>Sarjat</th>
+                        <th>Toistot</th>
+                        <th>Vastus (kg)</th>
+                        <th>Poista</th>
+                    </tr>
                     {% for move in moves %}
-                    <li><p>Nimi: {{ move.move_name }}</p>
-                        <p>Sarjat: {{ move.sets }}</p>
-                        <p>Toistot: {{ move.reps }}</p>
-                        <p>Vastus: {{ move.load }} kg</p>
-                        <p>Poista: <input type="checkbox" name="move_id" value="{{ move.id }}"></p></li>
+                    <tr>
+                        <td>{{ move.move_name }}</td>
+                        <td>{{ move.sets }}</td>
+                        <td>{{ move.reps }}</td>
+                        <td>{{ move.load }} kg</td>
+                        <td><input type="checkbox" name="move_id" value="{{ move.id }}"></td>
+                    </tr>
                     {% endfor %}
-                    <input class="submitbutton", type="submit" value="Poista valitut liikkeet">
-                </ul>
+                </table>
+                <br>
+                <input class="submitbutton", type="submit" value="Poista valitut liikkeet">
             </form>
         </div>
     {% endif %}
@@ -48,13 +58,25 @@
     <div class="container">
         <h2>Lisää liikkeitä</h2>
         <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}/add_moves" method="POST">
-            {% for move in all_moves %}
-                <p>Nimi: {{ move.name }}</p>
-                <p>Valitse: <input type="checkbox" name="move_id" value="{{ move.id }}"></p>
-                <p>Sarjat: <input type="integer" name="sets"></p>
-                <p>Toistot: <input type="integer" name="reps"></p>
-                <p>Vastus: <input type="float" name="load"></p>
-            {% endfor %}
+            <table class="movetable">
+                <tr>
+                    <th>Nimi</th>
+                    <th>Valitse</th>
+                    <th>Sarjat</th>
+                    <th>Toistot</th>
+                    <th>Vastus (kg)</th>
+                </tr>
+                {% for move in all_moves %}
+                <tr>
+                    <td>{{ move.name }}</td>
+                    <td><input type="checkbox" name="move_id" value="{{ move.id }}"></td>
+                    <td><input type="integer" id="numberinput" name="sets{{ move.id }}"></td>
+                    <td><input type="integer" id="numberinput" name="reps{{ move.id }}"></td>
+                    <td><input type="float" id="numberinput" name="load{{ move.id }}"></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br>
             <input class="submitbutton", type="submit" value="Lisää liikkeet">
         </form>
 

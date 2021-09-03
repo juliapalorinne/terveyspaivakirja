@@ -5,6 +5,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from querys import *
 from input import *
 
+
 def user_id():
     return session.get("user_id", 0)
 
@@ -91,7 +92,9 @@ def post_new_user():
 def show_user(id):
     reset_error_message()
     user = get_user_by_id(id)
-    return render_template("user.html", user=user)
+    workouts = number_of_workouts(id)
+    routines = number_of_routines(id)
+    return render_template("user.html", user=user, workouts=workouts, routines=routines)
 
 
 # ADD NAME

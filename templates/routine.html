@@ -6,21 +6,31 @@
 
     <div class="container">
         <h2>Tiedot</h2>
-        <p>Nimi: {{ routine.name }}</p>
-        <p>Kategoria: {{ routine.category }}</p>
-        <p>Ohjeet: {{ routine.instructions }}</p>
+        <table class="inputtable">
+            <tr><td>Nimi:</td><td>{{ routine.name }}</td></tr>
+            <tr><td>Kategoria:</td><td>{{ routine.category }}</td></tr>
+            <tr><td>Ohjeet:</td><td>{{ routine.instructions }}</td></tr>
+        </table>
 
         {% if moves%}
             <br>
             <h2>Liikkeet</h2>
-            <ul>
+            <table class="movetable">
+                <tr>
+                    <th>Nimi</th>
+                    <th>Sarjat</th>
+                    <th>Toistot</th>
+                    <th>Vastus (kg)</th>
+                </tr>
                 {% for move in moves %}
-                    <li><p>Nimi: {{ move.name }}</p>
-                    <p>Sarjat: {{ move.sets }}</p>
-                    <p>Toistot: {{ move.reps }}</p>
-                    <p>Vastus: {{ move.load }}</p></li>
+                <tr>
+                    <td>{{ move.move_name }}</td>
+                    <td>{{ move.sets }}</td>
+                    <td>{{ move.reps }}</td>
+                    <td>{{ move.load }} kg</td>
+                </tr>
                 {% endfor %}
-            </ul>
+            </table>
         {% endif %}
 
         <br>
@@ -40,11 +50,13 @@
         {% if workouts%}
             <ul>
                 {% for workout in workouts %}
-                    <li><p>Nimi: {{ workout.name }}</p>
-                    <p>Aika: {{ workout.time.strftime("%d.%m.%Y %H:%M") }}</p>
-                    <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}">
-                        <input class="linkbutton",  type="submit" value="Tarkastele harjoitusta">
-                    </form></li>
+                    <li><table class="listtable">
+                        <tr><td>Nimi:</td><td>{{ workout.name }}</td></tr>
+                        <tr><td>Aika:</td><td>{{ workout.time.strftime("%d.%m.%Y %H:%M") }}</td></tr>
+                        <tr><td> <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}">
+                            <input class="linkbutton",  type="submit" value="Tarkastele harjoitusta">
+                        </form></td></tr>
+                    </table></li>
                 {% endfor %}
             </ul>
         {% else %}

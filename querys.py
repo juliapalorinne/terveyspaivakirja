@@ -77,6 +77,11 @@ def get_all_workouts(user_id):
     list = result.fetchall()
     return list
 
+def number_of_workouts(user_id):
+    sql = "SELECT COUNT(id) FROM workouts WHERE user_id=:user_id"
+    result = db.session.execute(sql, {"user_id":user_id})
+    number = result.fetchone()[0]
+    return number
 
 def get_one_workout(user_id, workout_id):
     sql = "SELECT * FROM workouts WHERE id=:workout_id AND user_id=:user_id"
@@ -233,6 +238,13 @@ def get_all_routines(user_id):
     db.session.commit()
     list = result.fetchall()
     return list
+
+
+def number_of_routines(user_id):
+    sql = "SELECT COUNT(id) FROM routines WHERE user_id=:user_id"
+    result = db.session.execute(sql, {"user_id":user_id})
+    number = result.fetchone()[0]
+    return number
 
 
 def get_one_routine(user_id, id):

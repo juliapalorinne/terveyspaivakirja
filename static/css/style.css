@@ -2,90 +2,136 @@ body {
     margin: auto;
     padding: 10px;
     font-family: 'Arial', 'Helvetica', sans-serif;
-    background:rgb(70, 79, 88);
-    color: rgb(207, 158, 101);
+    background:rgb(4, 27, 46);
+    color: rgb(218, 208, 197);
+}
+
+footer {
+    margin: 0px;
+    padding: 20px;
+    background: rgb(11, 61, 102);
+    text-align: left;
 }
 
 #links {
     margin: 0;
     padding: 0;
     height: 60px;
-    background: rgb(48, 54, 59);
+    background: rgb(11, 61, 102);
 }
 
 .container {
-    background: rgb(48, 54, 59);
+    background: rgb(11, 61, 102);
     margin: 20px;
     padding: 20px;
     border-radius: 10px;
 }
 
-.submitbutton {
-    width: 200px;
-    height: 40px;
-    font-size: 16px;
-    background: rgb(207, 158, 101);
-    color: black;
+.movetable {
+    width: 100%;
+    background: rgb(64, 92, 119);
+    align-self: center;
+    padding: 20px;
+    text-align: left;
     border-radius: 10px;
 }
 
 
-footer {
-    margin: 0px;
+.listtable {
+    align-self: left;
     padding: 20px;
-    background: rgb(48, 54, 59);
     text-align: left;
+    font-weight: bold;
+}
+
+
+tr {
+    height: 40px;
+}
+
+td {
+    padding: 0 40px 0 0;
+    min-width: 60px;
+}
+
+.inputtable {
+    align-self: left;
+    padding: 20px;
+    text-align: left;
+    font-weight: bold;
+}
+
+td .inputtable {
+    padding: 0 5px 0 0;
+    min-width: 200px;
+}
+
+
+.submitbutton {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    background: rgb(4, 27, 46);
+    color: rgb(218, 208, 197);
+    border-radius: 10px;
+}
+
+
+#numberinput {
+    width: 100px;
 }
 
 #errormessage {
     font-size: 16px;
+    padding: 10px;
     color: rgb(131, 5, 5);
     background: rgb(224, 221, 13);
 }
 
 .margin {
     height: 30px;
-    color: white;
 }
 
 #uppermargin {
-    background: linear-gradient(to right, rgb(92, 12, 145), black);
+    background: linear-gradient(to right, rgb(207, 158, 101), black);
 }
 
 #lowermargin {
-    background: linear-gradient(to right, black, rgb(92, 12, 145));
+    background: linear-gradient(to right, black, rgb(207, 158, 101));
 }
 
 .linkbutton {
     padding: 10px;
-    width: 200px;
     height: 40px;
     font-size: 16px;
-    background: rgb(207, 158, 101);
-    color: black;
-    
+    background: rgb(4, 27, 46);
+    color: rgb(218, 208, 197);
 }
 
 #frontpagebutton {
     position: absolute;
+    width: 200px;
     margin-top: 10px;
     margin-left: 10px;
 }
 
 #newuserbutton {
     position: absolute;
+    width: 200px;
     margin-top: 10px;
     margin-left: 220px;
 }
 
 #userpagebutton {
     position: absolute;
+    width: 200px;
     margin-top: 10px;
     margin-left: 220px;
 }
 
 #logoutbutton {
     position: absolute;
+    width: 200px;
     margin-top: 10px;
     margin-left: 430px;
 }

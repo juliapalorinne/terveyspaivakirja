@@ -5,6 +5,7 @@
     <h1>Tallennetut harjoitukset</h1>
 
     <div class="container">
+        <h2>Luo uusi</h2>
         <p>Luo uusi harjoitus painikkeesta "Uusi harjoitus".</p>
 
         <form action="/user/{{ user[0] }}/workouts/new">
@@ -14,13 +15,16 @@
     
 
     <div class="container">
+        <h2>Valmiit harjoitukset</h2>
         <ul>
             {% for workout in workouts %}
-                <li><p>Nimi: {{ workout.name }}</p>
-                <p>Aika: {{ workout.time.strftime("%d.%m.%Y %H:%M") }}</p>
-                <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}">
-                    <input class="linkbutton",  type="submit" value="Tarkastele harjoitusta">
-                </form></li>
+            <li><table class="listtable">
+                <tr><td>Nimi:</td><td>{{ workout.name }}</td>
+                <tr><td>Aika:</td><td>{{ workout.time.strftime("%d.%m.%Y %H:%M") }}</td></tr>
+            </table>
+            <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}">
+                <input class="linkbutton",  type="submit" value="Tarkastele harjoitusta">
+            </form></li>
             {% endfor %}
         </ul>
     </div>

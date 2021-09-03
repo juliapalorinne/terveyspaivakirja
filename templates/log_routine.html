@@ -6,35 +6,55 @@
 
     <div class="container">
         <h2>Treeniohjelma</h2>
-        <p>Nimi: {{ routine.name }}</p>
-        <p>Kategoria: {{ routine.category }}</p>
-        <p>Ohjeet: {{ routine.instructions }}</p>
+        <table class="inputtable">
+            <tr><td>Nimi:</td><td>{{ routine.name }}</td></tr>
+            <tr><td>Kategoria:</td><td>{{ routine.category }}</td></tr>
+            <tr><td>Ohjeet:</td><td>{{ routine.instructions }}</td></tr>
+        </table>
 
         <br>
-        <h2>Liikkeet:</h2>
-        <ul>
-            {% for workout in workouts %}
-                <li><p>Nimi: {{ move.name }}</p>
-                <p>Sarjat: {{ move.sets }}</p>
-                <p>Toistot: {{ move.reps }}</p>
-                <p>Vastus: {{ move.load }}</p></li>
-            {% endfor %}
-        </ul>
+        {% if moves%}
+            <h2>Liikkeet:</h2> 
+            <table class="movetable">
+                <tr>
+                    <th>Nimi</th>
+                    <th>Sarjat</th>
+                    <th>Toistot</th>
+                    <th>Vastus (kg)</th>
+                </tr>
+                {% for move in moves %}
+                <tr>
+                    <td>{{ move.move_name }}</td>
+                    <td>{{ move.sets }}</td>
+                    <td>{{ move.reps }}</td>
+                    <td>{{ move.load }} kg</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
     </div>
     
     <div class="container">
         <h2>Luo harjoitus treeniohjelman pohjalta</h2>
         <form action="/user/{{ user[0] }}/workouts/new/log_routine/{{ routine[0] }}" method="POST">
-            <p>Nimi: <input type="text" name="name"></p>
-            <p>Kategoria: <input type="text" name="category"></p>
-            <p>Kommentteja: <input type="text" name="comments"></p>
+            <table class="inputtable">
+                <tr><td>Nimi:</td><td><input type="text" name="name"></td></tr>
+                <tr><td>Kategoria:</td><td><input type="text" name="category"></td></tr>
+                <tr><td>Lisätietoja:</td><td><textarea name="comments" rows="3" cols="50"></textarea></td></tr>
+            </table>
+            <br>
             <input class="submitbutton", type="submit" value="Tallenna">
         </form>
     </div>
 
     <div class="container">
+        <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}">
+            <input class="linkbutton",  type="submit" value="Tarkastele tai muokkaa valittua treeniohjelmaa">
+        </form>
+        
+        <br>
         <form action="/user/{{ user[0] }}/workouts/new/log_routine">
-            <input class="linkbutton",  type="submit" value="Takaisin listaukseen">
+            <input class="linkbutton",  type="submit" value="Valitse toinen treeniohjelma uutta harjoitusta varten">
         </form>
     </div>
 

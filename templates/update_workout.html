@@ -7,20 +7,19 @@
     <div class="container">
         <h2>Muuta tietoja</h2>
         <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}/update" method="POST">            
-            <p>Nimi: {{ workout.name }}</p>
-            <p>Muuta nimeä:<input type="text" name="name"></p>
+            <table class="inputtable">
+                <tr><td>Nimi:</td><td>{{ workout.name }}</td></tr>
+                <tr><td>Muuta nimeä:</td><td><input type="text" name="name"></td></tr>
             <br>
-            
-            <p>Aika: {{ workout.time.strftime("%d.%m.%Y %H:%M") }}</p>
-            <p>Muuta aikaa:<input type="datetime-local" name="time"></p>
+                <tr><td>Aika:</td><td>{{ workout.time.strftime("%d.%m.%Y %H:%M") }}</td></tr>
+                <tr><td>Muuta aikaa:</td><td><input type="datetime-local" name="time"></td></tr>
             <br>
-            
-            <p>Kategoria: {{ workout.category }}</p>
-            <p>Muuta kategoriaa:<input type="text" name="category"></p>
+                <tr><td>Kategoria:</td><td>{{ workout.category }}</td></tr>
+                <tr><td>Muuta kategoriaa:</td><td><input type="text" name="category"></td></tr>
             <br>
-            
-            <p>Lisätietoja: {{ workout.comments }}</p>
-            <p>Muuta lisätietoja:<input type="text" name="comments"></p>        
+                <tr><td>Lisätietoja:</td><td>{{ workout.comments }}</td></tr>
+                <tr><td>Muuta lisätietoja:</td><td><textarea name="comments" rows="3" cols="50"></textarea></td></tr>
+            </table>
             <br>
             <input class="submitbutton", type="submit" value="Muuta tietoja">
         </form>
@@ -35,16 +34,26 @@
     <div class="container">
         <h2>Poista liikkeitä</h2>
         <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}/delete_moves" method="POST">            
-            <ul>
+            <table class="movetable">
+                <tr>
+                    <th>Nimi</th>
+                    <th>Sarjat</th>
+                    <th>Toistot</th>
+                    <th>Vastus (kg)</th>
+                    <th>Poista</th>
+                </tr>
                 {% for move in moves %}
-                <li><p>Nimi: {{ move.move_name }}</p>
-                    <p>Sarjat: {{ move.sets }}</p>
-                    <p>Toistot: {{ move.reps }}</p>
-                    <p>Vastus: {{ move.load }} kg</p>
-                    <p>Poista: <input type="checkbox" name="move_id" value="{{ move.id }}"></p></li>
+                <tr>
+                    <td>{{ move.move_name }}</td>
+                    <td>{{ move.sets }}</td>
+                    <td>{{ move.reps }}</td>
+                    <td>{{ move.load }} kg</td>
+                    <td><input type="checkbox" name="move_id" value="{{ move.id }}"></td>
+                </tr>
                 {% endfor %}
-                <input class="submitbutton", type="submit" value="Poista valitut liikkeet">
-            </ul>
+            </table>
+            <br>
+            <input class="submitbutton", type="submit" value="Poista valitut liikkeet">
         </form>
     </div>
 

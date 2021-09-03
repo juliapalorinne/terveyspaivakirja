@@ -14,14 +14,22 @@
         <br>
         {% if moves%}
             <h2>Liikkeet:</h2> 
-            <ul>
+            <table class="movetable">
+                <tr>
+                    <th>Nimi</th>
+                    <th>Sarjat</th>
+                    <th>Toistot</th>
+                    <th>Vastus (kg)</th>
+                </tr>
                 {% for move in moves %}
-                    <li><p>Nimi: {{ move.move_name }}</p>
-                    <p>Sarjat: {{ move.sets }}</p>
-                    <p>Toistot: {{ move.reps }}</p>
-                    <p>Vastus: {{ move.load }} kg</p></li>
+                <tr>
+                    <td>{{ move.move_name }}</td>
+                    <td>{{ move.sets }}</td>
+                    <td>{{ move.reps }}</td>
+                    <td>{{ move.load }} kg</td>
+                </tr>
                 {% endfor %}
-            </ul>
+            </table>
         {% endif %}
         
         <br>
@@ -33,15 +41,25 @@
     <div class="container">
         <h2>Lisää liikkeitä:</h2>
         <form action="/user/{{ user[0] }}/workouts/{{ workout[0] }}/log_moves" method="POST">
-            <ul>
+            <table class="movetable">
+                <tr>
+                    <th>Nimi</th>
+                    <th>Valitse</th>
+                    <th>Sarjat</th>
+                    <th>Toistot</th>
+                    <th>Vastus (kg)</th>
+                </tr>
                 {% for move in all_moves %}
-                    <li><p>Nimi: {{ move.name }}</p>
-                    <p>Valitse: <input type="checkbox" name="move_id" value="{{ move.id }}"></p>
-                    <p>Sarjat: <input type="integer" name="sets{{ move.id }}"></p>
-                    <p>Toistot: <input type="integer" name="reps{{ move.id }}"></p>
-                    <p>Vastus (kg): <input type="float" name="load{{ move.id }}"></p></li>
+                <tr>
+                    <td>{{ move.name }}</td>
+                    <td><input type="checkbox" name="move_id" value="{{ move.id }}"></td>
+                    <td><input type="integer" id="numberinput" name="sets{{ move.id }}"></td>
+                    <td><input type="integer" id="numberinput" name="reps{{ move.id }}"></td>
+                    <td><input type="float" id="numberinput" name="load{{ move.id }}"></td>
+                </tr>
                 {% endfor %}
-            </ul>
+            </table>
+            <br>
             <input class="submitbutton", type="submit" value="Lisää liikkeet">
         </form>
 

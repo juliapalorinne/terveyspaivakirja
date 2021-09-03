@@ -10,13 +10,18 @@
             vastusta treeniohjelman luomisen jälkeen.
         </p>
     
+        <br>
         <form action="/user/{{ user[0] }}/routines/new" method="POST">
-            <p>Nimi: <input type="text" name="name"></p>
-            <p>Kategoria: <input type="text" name="category"></p>
-            <p>Ohjeet: <textarea name="instructions" rows="3" cols="50"></textarea>></p>
+            <table class="inputtable">
+                <tr><td>Nimi:</td><td><input type="text" name="name"></td></tr>
+                <tr><td>Kategoria:</td><td><input type="text" name="category"></td></tr>
+                <tr><td>Ohjeet:</td><td><textarea name="instructions" rows="3" cols="50"></textarea></td></tr>
+            </table>
+            <br>
             <input class="submitbutton", type="submit" value="Tallenna">
         </form>
 
+        <br>
         <form action="/user/{{ user[0] }}/routines">
             <input class="linkbutton", type="submit" value="Takaisin listaukseen">
         </form>

@@ -55,7 +55,8 @@
 
     <div class="container">
         <h2>Harjoitukset</h2>
-
+        <p>Omia harjoituksia yhteensä {{ workouts }} kpl.</p>
+        <br>
         <form action="/user/{{ user[0] }}/workouts">
             <input class="linkbutton",  type="submit" value="Omat harjoitukset">
         </form>
@@ -67,7 +68,8 @@
 
     <div class="container">
         <h2>Treeniohjelmat</h2>
-
+        <p>Omia treeniohjelmia yhteensä {{ routines }} kpl.</p>
+        <br>
         <form action="/user/{{ user[0] }}/routines">
             <input class="linkbutton", type="submit" value="Omat treeniohjelmat">
         </form>

@@ -8,11 +8,13 @@
         <h2>Valitse treeniohjelma seuraavalta listalta</h2>
         <ul>
             {% for routine in routines %}
-                <li><p>Nimi: {{ routine.name }}</p>
-                <p>Kategoria: {{ routine.category }}</p>
-                <form action="/user/{{ user[0] }}/workouts/new/log_routine/{{ routine[0] }}">
-                    <input class="linkbutton",  type="submit" value="Valitse treeniohjelma">
-                </form></li>
+                <li><table class="listtable">
+                    <tr><td>Nimi:</td><td>{{ routine.name }}</td></tr>
+                    <tr><td>Kategoria:</td><td>{{ routine.category }}</td></tr>
+                    <tr><td><form action="/user/{{ user[0] }}/workouts/new/log_routine/{{ routine[0] }}">
+                        <input class="linkbutton",  type="submit" value="Valitse treeniohjelma">
+                    </form></td></tr>
+                </table></li>
             {% endfor %}
         </ul>
     </div>

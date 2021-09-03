@@ -11,9 +11,12 @@
         </p>
 
         <form action="/moves/new" method="POST">
-            <p>Nimi: <input type="text" name="name"></p>
-            <p>Kategoria: <input type="text" name="category"></p>
-            <p>Ohjeet: <textarea name="instructions" rows="3" cols="50"></textarea></p>
+            <table class="inputtable">
+                <tr><td>Nimi:</td><td><input type="text" name="name"></td></tr>
+                <tr><td>Kategoria:</td><td><input type="text" name="category"></td></tr>
+                <tr><td>Ohjeet:</td><td><textarea name="instructions" rows="3" cols="50"></textarea></td></tr>
+            </table>
+            <br>
             <input class="submitbutton", type="submit" value="Tallenna">
         </form>
     </div>
@@ -22,9 +25,11 @@
         <h2>Lista tallennetuista liikkeistä</h2>
         <ul>
             {% for move in moves %}
-                <li><p>Nimi: {{ move.name }}</p>
-                <p>Kategoria: {{ move.category }}</p>
-                <p>Ohjeet: {{ move.instructions }}</p></li>
+            <li><table class="listtable">
+                <tr><td>Nimi:</td><td>{{ move.name }}</td></tr>
+                <tr><td>Kategoria:</td><td>{{ move.category }}</td></tr>
+                <tr><td>Ohjeet:</td><td>{{ move.instructions }}</td></tr>
+            </table></li>
             {% endfor %}
         </ul>
     </div>

@@ -2,13 +2,7 @@
 {% block title %} Terveyspäiväkirja {% endblock %}
 {% block content %}
 
-    <h1>Terveyspäiväkirja</h1>
-    <p>Tervetuloa terveyspäiväkirjaan! Tällä sovelluksella voit seurata 
-        terveyttäsi ja pitää ruoka-, treeni- ja unipäiväkirjaa. Voit 
-        myös tehdä ruokasuunnitelmia ja tallentaa reseptejä ja 
-        treeniohjelmia.
-    </p>
-
+<div class="container">
     {% if session.user_id %}
     
         <p>Olet kirjautunut käyttäjänimellä {{ user.username }}.</p>
@@ -23,7 +17,7 @@
         </form>
 
     {% endif %}
-
+</div>
 
 {% endblock %}
 
