@@ -47,9 +47,11 @@ Tärkeimmät ominaisuudet käyttäjän kannalta:
 
 Sovellus tallentaa tällä hetkellä tietoa seuraaviin tietokantatauluihin:
 - **Käyttäjät** (nimi, käyttäjänimi, salasana, syntymäaika, paino, pituus)
-- **Harjoitukset** (nimi, kategoria, ajankohta, kuvaus, käyttäjä)
+- **Harjoitukset** (nimi, kategoria, ajankohta, kuvaus, käyttäjä, treeniohjelma)
 - **Treeniohjelmat** (nimi, kategoria, ohjeet, käyttäjä)
 - **Liikkeet** (nimi, kategoria, ohjeet)
+- **Harjoitus_liikkeet** (harjoitus, liike, vastus, toistot, sarjat)
+- **Treeniohjelma_liikkeet** (treeniohjelma, liike, vastus, toistot, sarjat)
 
 <br>
 
