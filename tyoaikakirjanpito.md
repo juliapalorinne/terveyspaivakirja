@@ -13,6 +13,7 @@ Tammikuu | Projektin luominen, dokumentaation aloittaminen, README ja web-sovell
 31.8.2021 | Lisäysominaisuus kaikille tietokantatauluille | 7,5 h
 1.9.2021 | Käyttäjätietojen muokkaus ja käyttäjän poistaminen sekä syötteiden validointi | 6 h
 2.9.2021 | Tietokannan käsittely ja toimintojen lisääminen muille tietokantatauluille (poisto, muokkaus, yms.) | 9 h
-3.9.2021 | Sovelluksen ulkoasu ja käytettävyys | 4 h
+3.9.2021 | Sovelluksen ulkoasu ja käytettävyys | 5 h
+5.9.2021 | Dokumentaatio ja viimeistely | 2 h
 
-**YHTEENSÄ** | | **40 h**
+**YHTEENSÄ** | | **43 h**
