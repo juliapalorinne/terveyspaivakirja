@@ -2,7 +2,6 @@ CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
 	username VARCHAR(30) UNIQUE,
 	password VARCHAR(50),
-	role VARCHAR(10),
 	name VARCHAR(100),
 	birth_date DATE,
 	height INTEGER,
@@ -30,7 +29,6 @@ CREATE TABLE workouts(
 	name VARCHAR(100),
 	category TEXT,
 	time TIMESTAMP,
-	rating INTEGER,
 	comments TEXT,
 	user_id INTEGER REFERENCES users,
 	routine_id INTEGER REFERENCES routines
@@ -54,14 +52,4 @@ CREATE TABLE workout_moves (
 	sets INTEGER,
 	reps INTEGER,
 	load FLOAT
-);
-
-
-CREATE TABLE days (
-	id SERIAL PRIMARY KEY,
-	date DATE,
-	workout_id1 INTEGER REFERENCES workouts,
-	workout_id2 INTEGER REFERENCES workouts,
-	workout_id3 INTEGER REFERENCES workouts,
-	user_id INTEGER REFERENCES users
 );
