@@ -25,21 +25,18 @@ Tärkeimmät ominaisuudet käyttäjän kannalta:
 
 ### Sovelluksessa toteutettu
 
-- Käyttäjä voi luoda profiilin, muokata tietojaan, vaihtaa salasanan ja poistaa profiilin
+- Käyttäjä voi luoda profiilin, muokata tietojaan, vaihtaa salasanan ja poistaa profiilin.
 - Käyttäjä voi luoda harjoituksia, joista tallennetaan nimi, ajankohta, kategoria ja lisätiedot sekä valitaan liikkeet valmiilta listalta
-- Käyttäjä voi luoda valmiita treeniohjelmia, joista tallennetaan nimi, kategoria, ohjeet ja siihen sisältyvät liikkeet
-- Käyttäjä voi luoda harjoituksen automaattisesti olemassa olevan treeniohjelman pohjalta
-- Käyttäjä voi muokata ja poistaa harjoituksiaan ja treeniohjelmiaan
-- Käyttäjä voi lisätä tietokantaan uusia liikkeitä, joista tallennetaan nimi, kategoria ja ohjeet, mutta käyttäjä ei voi poistaa eikä muokata olemassa olevia liikkeitä
+- Käyttäjä voi luoda valmiita treeniohjelmia, joista tallennetaan nimi, kategoria, ohjeet ja siihen sisältyvät liikkeet.
+- Käyttäjä voi luoda harjoituksen automaattisesti olemassa olevan treeniohjelman pohjalta.
+- Käyttäjä voi muokata ja poistaa harjoituksiaan ja treeniohjelmiaan.
+- Käyttäjä voi hakea treeniohjelmia ja harjoituksia hakusanalla niistä talletetun kategorian perusteella.
+- Käyttäjä voi lisätä tietokantaan uusia liikkeitä, joista tallennetaan nimi, kategoria ja ohjeet, mutta käyttäjä ei voi poistaa eikä muokata olemassa olevia liikkeitä.
 
 <br>
 
 ### Puutteet
-- Käyttäjäprofiilin valintaa (admin, user) ei vielä toteutettu
-- Hakeminen kategorian perusteella toteuttamatta
-- Käyttäjäsivulta puuttuu lista uusimmista harjoituksista
-- Liikkeiden poistaminen harjoituksesta ei onnistu
-- Treeniohjelman sivulla eivät näy siihen perustuvat harjoitukset
+- Sovellus toimii Herokussa vaihtelevasti, enkä löydä ongelmaan ratkaisua.
 
 <br>
 
