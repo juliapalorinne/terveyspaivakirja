@@ -15,6 +15,28 @@ def routines(user_id):
     return render_template("routines.html", routines=routines, user=user)
 
 
+# GET ROUTINES AND SEARCH RESULTS
+@app.route("/user/<int:user_id>/routines/term/<string:term>")
+def routines_and_results(user_id, term):
+    reset_error_message()
+    routines = get_all_routines(user_id)
+    user = get_user_by_id(user_id)
+    search = search_routines(user_id, term)
+    return render_template("routines.html", routines=routines, user=user, search=search, term=term)
+
+
+# SEARCH ROUTINES
+@app.route("/user/<int:user_id>/routines/search", methods=["POST"])
+def search_routine(user_id):
+    term = request.form["term"]
+    if check_name(term):
+        return routines_and_results(user_id, term)
+    else:
+        session["error"] = "Hakusana on virheellinen"
+        session["error_shown"] = 1
+    return routines(user_id)
+
+
 # GET NEW ROUTINE PAGE
 @app.route("/user/<int:user_id>/routines/new", methods=["GET"])
 def see_new_routine_page(user_id):

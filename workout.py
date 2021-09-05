@@ -6,6 +6,7 @@ from user import user_id, error, error_shown, remove_error_message, reset_error_
 from input import *
 
 
+
 # GET ALL WORKOUTS
 @app.route("/user/<int:user_id>/workouts")
 def workouts(user_id):
@@ -13,6 +14,28 @@ def workouts(user_id):
     workouts = get_all_workouts(user_id)
     user = get_user_by_id(user_id)
     return render_template("workouts.html", workouts=workouts, user=user)
+
+
+# GET WORKOUTS AND SEARCH RESULTS
+@app.route("/user/<int:user_id>/workouts/term/<string:term>")
+def workouts_and_results(user_id, term):
+    reset_error_message()
+    workouts = get_all_workouts(user_id)
+    user = get_user_by_id(user_id)
+    search = search_workouts(user_id, term)
+    return render_template("workouts.html", workouts=workouts, user=user, search=search, term=term)
+
+
+# SEARCH WORKOUTS
+@app.route("/user/<int:user_id>/workouts/search", methods=["POST"])
+def search_workout(user_id):
+    term = request.form["term"]
+    if check_name(term):
+        return workouts_and_results(user_id, term)
+    else:
+        session["error"] = "Hakusana on virheellinen"
+        session["error_shown"] = 1
+    return workouts(user_id)
 
 
 # GET NEW WORKOUT PAGE
@@ -162,7 +185,7 @@ def delete_moves_from_workout(user_id, workout_id):
 @app.route("/user/<int:user_id>/workouts/<int:workout_id>/delete", methods=["POST"])
 def delete_this_workout(user_id, workout_id):
     delete_workout(user_id, workout_id)
-    return workouts(user_id)
+    return workouts(user_id, null)
 
 
 # GET LOG ROUTINE LIST

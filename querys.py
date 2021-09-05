@@ -77,15 +77,19 @@ def get_all_workouts(user_id):
     list = result.fetchall()
     return list
 
+
 def number_of_workouts(user_id):
     sql = "SELECT COUNT(id) FROM workouts WHERE user_id=:user_id"
     result = db.session.execute(sql, {"user_id":user_id})
+    db.session.commit()
     number = result.fetchone()[0]
     return number
+
 
 def get_one_workout(user_id, workout_id):
     sql = "SELECT * FROM workouts WHERE id=:workout_id AND user_id=:user_id"
     result = db.session.execute(sql, {"user_id":user_id, "workout_id":workout_id})
+    db.session.commit()
     workout = result.fetchone()
     return workout
 
@@ -93,6 +97,14 @@ def get_one_workout(user_id, workout_id):
 def get_all_workouts_by_routine(routine_id):
     sql = "SELECT * FROM workouts WHERE routine_id=:routine_id ORDER BY time DESC"
     result = db.session.execute(sql, {"routine_id":routine_id})
+    db.session.commit()
+    list = result.fetchall()
+    return list
+
+
+def search_workouts(user_id, term):
+    sql = "SELECT * FROM workouts WHERE user_id=:user_id AND category LIKE :term"
+    result = db.session.execute(sql, {"user_id":user_id, "term":"%"+term+"%"})
     db.session.commit()
     list = result.fetchall()
     return list
@@ -258,6 +270,14 @@ def get_one_routine(user_id, id):
     db.session.commit()
     routine = result.fetchone()
     return routine
+
+
+def search_routines(user_id, term):
+    sql = "SELECT * FROM routines WHERE user_id=:user_id AND category LIKE :term"
+    result = db.session.execute(sql, {"user_id":user_id, "term":"%"+term+"%"})
+    db.session.commit()
+    list = result.fetchall()
+    return list
 
 
 def get_all_moves_by_routine(routine_id):

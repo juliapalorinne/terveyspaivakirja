@@ -12,6 +12,41 @@
             <input class="linkbutton",  type="submit" value="Uusi harjoitus">
         </form>
     </div>
+
+
+    <div class="container">
+        <h2>Hae harjoitusta</h2>
+        <p>Hae harjoitusta kategorian perusteella.</p>
+
+        <form action="/user/{{ user[0] }}/workouts/search" method="POST">
+            <table class="inputtable">
+                <tr><td>Hakusana:</td><td><input type="text" name="term"></td></tr>
+                </table>
+            <br>
+            <input class="submitbutton", type="submit" value="Hae">
+        </form>
+
+
+        {% if term %}
+            <h3>Tulokset hakusanalla "{{ term }}":</h3>
+            {% if search %}
+            <ul>
+                {% for result in search %}
+                <li><table class="listtable">
+                    <tr><td>Nimi:</td><td>{{ result.name }}</td>
+                    <tr><td>Aika:</td><td>{{ result.time.strftime("%d.%m.%Y %H:%M") }}</td></tr>
+                </table>
+                <form action="/user/{{ user[0] }}/workouts/{{ result[0] }}">
+                    <input class="linkbutton",  type="submit" value="Tarkastele harjoitusta">
+                </form></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p>Ei tuloksia</p>
+            {% endif %}
+        {% endif %}
+        
+    </div>
     
 
     <div class="container">

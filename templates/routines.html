@@ -13,6 +13,41 @@
         </form>
     </div>
 
+
+    <div class="container">
+        <h2>Hae treeniohjelmaa</h2>
+        <p>Hae treeniohjelmaa kategorian perusteella.</p>
+
+        <form action="/user/{{ user[0] }}/routines/search" method="POST">
+            <table class="inputtable">
+                <tr><td>Hakusana:</td><td><input type="text" name="term"></td></tr>
+                </table>
+            <br>
+            <input class="submitbutton", type="submit" value="Hae">
+        </form>
+
+
+        {% if term %}
+            <h3>Tulokset hakusanalla "{{ term }}":</h3>
+            {% if search %}
+            <ul>
+                {% for result in search %}
+                <li><table class="listtable">
+                    <tr><td>Nimi:</td><td>{{ result.name }}</td>
+                    <tr><th>Kategoria:</th><th>{{ result.category }}</th></tr>
+                </table>
+                <form action="/user/{{ user[0] }}/routines/{{ result[0] }}">
+                    <input class="linkbutton",  type="submit" value="Tarkastele treeniohjelmaa">
+                </form></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p>Ei tuloksia</p>
+            {% endif %}
+        {% endif %}
+        
+    </div>
+
     
     <div class="container">
         <h2>Valmiit treeniohjelmat</h2>
@@ -21,10 +56,10 @@
                 <li><table class="listtable">
                     <tr><th>Nimi:</th><th>{{ routine.name }}</th></tr>
                     <tr><th>Kategoria:</th><th>{{ routine.category }}</th></tr>
-                    <tr><th><form action="/user/{{ user[0] }}/routines/{{ routine[0] }}">
-                        <input class="linkbutton",  type="submit" value="Tarkastele treeniohjelmaa">
-                    </form></th></tr>
-                </table></li>
+                </table>
+                <form action="/user/{{ user[0] }}/routines/{{ routine[0] }}">
+                    <input class="linkbutton",  type="submit" value="Tarkastele treeniohjelmaa">
+                </form></li>
             {% endfor %}
         </ul>
     </div>
